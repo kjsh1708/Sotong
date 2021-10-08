@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>myHDB Homepage</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+
+    <link rel="stylesheet" href="css/hdb.css"/>
+    
+    
+</head>
+
+
+<body>
+    <div class="topnav" id="myTopnav">
+      <a style="float: left;color: white;padding-right:0;">My HDB</a>
+        <a href="#home" class="active nav-link">Home</a>
+        <a href="#news" class="nav-link">News</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i  onclick="removeimage()" class="fa fa-bars"></i>
+        </a>
+      </div>
+
+    <div class="container">
+        <h1>Welcome to MyHDB Website</h1>
+      <div class="container header">
+    </div>
+
+    <h1>News Feed</h1>
+
+    <div class="clearfix float-my-children">
+        <img src="//upload.wikimedia.org/wikipedia/commons/f/fa/Honor%C3%A9_de_Balzac_(Stories_By_Foreign_Authors).png" width=100>
+        <div>some text here</div>
+     </div>
+    
+   
+    </div>
+
+
+    <script>
+      //Hamburger menu
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+      </script>
+
+    <script>
+      var myNav = document.getElementById("myTopnav");
+
+      window.onscroll = function() {
+      "use strict";
+      if (document.body.scrollTop >= 280 || document.documentElement.scrollTop >= 280) {
+      myNav.classList.add("scroll");
+      } else {
+      myNav.classList.remove("scroll");
+      }
+      };
+    </script>
+    
+    
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+</body>
+</html>
