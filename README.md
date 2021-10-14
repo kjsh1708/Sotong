@@ -1,4 +1,4 @@
-<h1> myHDB </h1>
+<h1> Sotong Game</h1>
 <p> WAD Team 3</p>
 
-This is  a project that aims to produce a website that becomes a one stop site for people that are residing in HDB 
+A Game based website inspired by the top ranked "Squid Game" Series 
