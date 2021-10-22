@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump Glass</title>
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="css/glass.css">
+
+<link rel="stylesheet" href="css/sotong.css"/>
+
+</head>
+<body style="background-image: url('img/squid1.jpeg');background-size: cover;">
+
+  <div style="background-color: white;padding:0;" class=" container mt-2 text-center">
+  <a href="https://fontmeme.com/squid-game-font/"><img class="img-fluid" src="https://fontmeme.com/permalink/211014/243f2b7c72528c9d8317b73e580da21c.png"></a>
+  </div>
+
+  <div id="main"> 
+
+    <div class="text-center">
+    <button class=" mt-5 text-white bg-dark" onclick=Winner() disabled="disabled" id="win">End Here</button>
+    </div>
+
+      <div class="container pt-5 text-center">
+        <div class="row justify-content-around">
+          <div class="col-4">
+            <button id="fifth1" disabled="disabled" onclick=Break()>Jump Here</button>
+          </div>
+          <div class="col-4">
+            <button id="fifth2" disabled="disabled" onclick="EnableEndButton()">Jump Here</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pt-5 text-center">
+          <div class="row justify-content-around">
+            <div class="col-4">
+              <button id="fourth1" disabled="disabled" onclick=Break()>Jump Here</button>
+            </div>
+            <div class="col-4">
+              <button id="fourth2" disabled="disabled" onclick="EnableRow5Button()">Jump Here</button>
+            </div>
+          </div>
+      </div>
+
+      <div class="container pt-5 text-center">
+        <div class="row justify-content-around">
+          <div class="col-4">
+            <button id="third1" disabled="disabled" onclick="EnableRow4Button()">Jump Here</button>
+          </div>
+          <div class="col-4">
+            <button id="third2" disabled="disabled" onclick=Break()>Jump Here</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pt-5 text-center">
+        <div class="row justify-content-around">
+          <div class="col-4" >
+            <button id="second1" disabled="disabled" onclick=Break()>Jump Here</button>
+          </div>
+          <div class="col-4">
+            <button id="second2" disabled="disabled" onclick="EnableRow3Button()">Jump Here</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pt-5 text-center">
+        <div class="row justify-content-around">
+          <div class="col-4">
+            <button id="first1" onclick=Break()>Jump Here</button>
+          </div>
+          <div class="col-4">
+            <button id="first2" onclick="EnableRow2Button()">Jump Here</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center mt-5 text-white mb-5 bg-dark">Start From Here</p>
+      </div>
+
+
+
+
+      <div class="eliminated-screen text-center">
+        <img id="popupimg" src="img/soldier.png" height=200>
+        <div id="popdiv">
+          <h1 style="margin:0;padding-top:50px;">
+            You're Eliminated
+          </h1>
+          <button id="but2" style="padding:0px;">Go Back To Homepage</button>
+        </div>
+      </div>
+
+      <div class="winner-screen text-center">
+        <img id="popupimg" src="img/steak.png" height=200>
+        <div id="popdiv2">
+          <h1 style="margin:0;padding-top:50px;">
+            You've Won This Round
+          </h1>
+          <button id="but2" style="padding:0px;">Go To Next Round</button>
+        </div>
+      </div>
+
+
+      <script>
+
+        //Remove disable button so user can proceed to another row of glasses
+        function EnableRow2Button(){
+          document.getElementById('second1').removeAttribute('disabled');
+          document.getElementById('second2').removeAttribute('disabled');
+
+          document.getElementById('first1').disabled=true;
+          document.getElementById('first2').disabled=true;
+        }
+
+        function EnableRow3Button(){
+          document.getElementById('third1').removeAttribute('disabled');
+          document.getElementById('third2').removeAttribute('disabled');
+
+          document.getElementById('second1').disabled=true;
+          document.getElementById('second2').disabled=true;
+        }
+
+        function EnableRow4Button(){
+          document.getElementById('fourth1').removeAttribute('disabled');
+          document.getElementById('fourth2').removeAttribute('disabled');
+
+          document.getElementById('third1').disabled=true;
+          document.getElementById('third2').disabled=true;
+        }
+
+        function EnableRow5Button(){
+          document.getElementById('fifth1').removeAttribute('disabled');
+          document.getElementById('fifth2').removeAttribute('disabled');
+
+          document.getElementById('fourth1').disabled=true;
+          document.getElementById('fourth2').disabled=true;
+        }
+
+        function EnableEndButton(){
+          document.getElementById('fifth1').disabled=true;
+          document.getElementById('fifth2').disabled=true;
+
+          document.getElementById('win').removeAttribute('disabled');
+
+        }
+
+        function Winner(){
+          $(".winner-screen").fadeTo(200, 1);
+        }
+        
+
+        //End game if 0 , Proceed to another row if 1
+        function Break(){
+          $(".eliminated-screen").fadeTo(200, 1);
+        }
+
+       
+        $("#but2").click(function() {
+          location.href = "homepage.html";
+        });
+      
+
+      </script>
+
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="js/jquery.backstretch.min.js"></script>
+      <script src="js/templatemo-script.js"></script>
+
+
+</body>
+</html>
