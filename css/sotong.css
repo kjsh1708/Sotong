@@ -1,0 +1,106 @@
+/*NavBAr*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+  .topnav {
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    text-align: center;
+    padding:0;
+  }
+
+  .scroll {
+    background-color: black;
+  }
+
+  .topnav a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    font-family:fantasy;
+    
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  .topnav .icon {
+    display: none;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+      float: right;
+      display: block;  
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: center;
+    }
+
+  }
+
+  .container.header
+  {
+      padding:0;
+      margin-top: 80px;
+      margin-bottom: 20px;
+      content:url(https://images.unsplash.com/photo-1561037719-6affdd56efb2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1544&q=80);
+
+  }
+
+  h1{
+  text-align: center;
+  margin-top: 150px;
+}
+
+.float-my-children >*{
+  float:left;
+  margin-right:5px;
+}
+
+.topnav img{
+  height: 100px;
+  float: left;
+  padding-left: 30px;
+  margin:0;
+}
+
+.name{
+  float: left;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.navbar-fixed-top.scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
+}
+
+.navbar-fixed-top.scrolled .nav-link {
+  color:#555;
+}
