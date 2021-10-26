@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tug of War</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        #main {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .head {
+            border: 0.4vw solid black;
+            border-radius: 50%;
+            padding: 1vw;
+        }
+
+        #torso-user{
+            display: flex;
+            align-items: center;
+            margin: 0 20% 0 80%;
+        }
+
+        #torso-com {
+            display: flex;
+            align-items: center;
+            margin: 0 80% 0 20%;
+        }
+        
+        .body {
+            background-color: black;
+            width: 30%;
+            height: 5vw;
+        }
+
+        .arm {
+            background-color: black;
+            width: 2vw;
+            height: 0.6vw;
+        }
+        
+        .leg {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .left-leg {
+            background-color: black;
+            width: 15%;
+            height: 3vw;
+            transform: rotate(20deg);
+        }
+
+        .right-leg {
+            background-color: black;
+            width: 15%;
+            height: 3vw;
+            transform: rotate(-20deg);
+        }
+
+        #rope {
+            background-color: black;
+            width: 60%;
+            height: 0.5vw;
+            margin: auto 0;
+        }
+
+        #platform {
+            background-color: black;
+            height: 1vw;
+        }
+
+        #gap {
+            background-color: white;
+            width: 35%;
+            height: 100%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">TUG TO THE <span style="color: red;">DEATH</span></h1>
+
+    <div id="controls">
+        <button id="pullBtn">PULL</button><button id="holdBtn">HOLD</button>
+    </div>
+
+    <br><br><br><br><br><br><br>
+    
+    <div id="main">
+
+        <div id="user" class="player">
+            <div class="head"></div>
+            <div id="torso-user">
+                <div class="body"></div>
+                <div class="arm"></div>
+            </div>
+            <div class="leg">
+                <div class="left-leg"></div>
+                <div class="right-leg"></div>
+            </div>
+        </div>
+
+        <div id="rope"></div>
+        
+        <div id="com" class="player">
+            <div class="head"></div>
+            <div id="torso-com">
+                <div class="arm"></div>
+                <div class="body"></div>
+            </div>
+            <div class="leg">
+                <div class="left-leg"></div>
+                <div class="right-leg"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="platform">
+        <div id="gap"></div>
+    </div>
+</body>
+<script>
+    pullBtn = document.getElementById("pullBtn");
+    holdBtn = document.getElementById("holdBtn");
+    tugMain = document.getElementById("main");
+    started = 0;
+    canPull = 0;
+    enemyForce = 1;
+    pulls = 0;
+    strength = 1;
+
+    tugMain.style.left = 0;
+
+    function startGame(){
+        if (!started){
+            started = setInterval(enemyPull, 600);
+        }
+    }
+
+    function pullOnce() {
+        if (canPull) {
+            tugMain.style.left = `${parseFloat(tugMain.style.left) - strength * 1}%`;
+            tugMain.style.transition = "left 0.5s";
+        }
+        if (parseFloat(tugMain.style.left) <= -15.2){
+            clearInterval(started);
+            alert("you won");
+        }
+    }
+
+    function holdGround() {
+        enemyForce = 0.5;
+    }
+
+    function releaseGround() {
+        enemyForce = 1;
+    }
+
+    function enemyPull() {
+        if (Math.random() > 0.3){                           //change back to 0.3
+            canPull = 0;
+            pullBtn.style.backgroundColor = "initial";
+            pullBtn.style.color = "initial";
+            holdBtn.style.backgroundColor = "lightblue";
+            holdBtn.style.color = "white";
+            tugMain.style.left = `${parseFloat(tugMain.style.left) + strength * enemyForce * 1}%`;
+            tugMain.style.transition = "left 0.5s";
+            if (parseFloat(tugMain.style.left) >= 15.2){
+                clearInterval(started);
+                alert("you lost");
+            }
+        }
+        else {
+            canPull = 1;
+            holdBtn.style.backgroundColor = "initial";
+            holdBtn.style.color = "initial";
+            pullBtn.style.backgroundColor = "lightgreen";
+            pullBtn.style.color = "white";
+        }
+        pulls += 1;
+        if (pulls % 10 == 0) {
+            strength *= 0.9;
+        }
+    }
+    
+    pullBtn.addEventListener("click", startGame);
+    pullBtn.addEventListener("click", pullOnce);
+    holdBtn.addEventListener("mousedown", holdGround);
+    holdBtn.addEventListener("mouseup", releaseGround);
+
+</script>
+
+</html>
