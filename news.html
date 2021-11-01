@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Page</title>
+    <title>Sotong News Page</title>
 
    <!-- Required meta tags -->
    <meta charset="utf-8">
@@ -28,7 +28,7 @@
 <style>
 body {
 /* Location of the image */
-background-image: url(img/toilet.jpeg);
+background-image: url(img/toilet.png);
 
 /* Image is centered vertically and horizontally at all times */
 background-position: center center;
@@ -49,17 +49,28 @@ background-color:#464646;
 padding-top:70px;
 
 }
+td{
+    padding:20px
+}
+
+tr{
+    margin-top:10px;
+}
+tr:nth-child(even) {background: #249f9c}
+tr:nth-child(odd) {background: #FFF}
 
 .nav-link{
     font-family: 'Orbitron', sans-serif;
 }
+
+
 
 /* For mobile devices */
 @media only screen and (max-width: 767px) {
 body {
   /* The file size of this background image is 93% smaller
    * to improve page load speed on mobile internet connections */
-  background-image: url(img/toilet.jpeg);
+  background-image: url(img/toilet.png);
 }
   }
   </style>
@@ -67,17 +78,68 @@ body {
 </head>
 <body> 
 
-    <div id='app'><weather-menu></weather-menu></div>
+    <div id='app' class="container">
+        <squid-menu></squid-menu>
+    <div>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <img src="https://fontmeme.com/permalink/211031/60eb2da8b1d84424bb6db58da93d145b.png" alt="squid-game-font" border="0">
     </div>
 
+    <div class="container-fluid">
+        <table class="table">
+            <tbody>
+                <tr v-for="news of newsObj" id="news">
+                    <td v-if="news.image != null" style="padding: 20px;">
+                        <img :src="news.image" height=100 width=200>
+                    </td>
+                    <td v-else>
+                        <img src="img/coffin.png">
+                    </td>
+                    <td>
+                        <a :href="news.url">{{news.title}}</a>
+                        
+                        <p>{{news.content}}</p>
+                        <small>Source: {{news.source}}</small>
+                        <small class="float-end"><a :href="news.url">Click Here to View Full Article</a></small>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+</div>
     <script>
 
         const app = Vue.createApp({
-            
+            data(){
+        return{
+            newsObj:[]
+        }
+    },
+            created(){
+                var apikey="de0210f8598b44949a9aabf546c7ab34"
+                var url=`http://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=squid%20game&apiKey=de0210f8598b44949a9aabf546c7ab34&language=en`
+                axios.get(url)
+                .then(response=>{
+                    for(resp of response.data.articles){
+                        this.newsObj.push({
+                        'title': resp.title,
+                        'image':resp.urlToImage,
+                        'content':resp.content,
+                        'source':resp.source.name,
+                        'url':resp.url
+            }
+                    )
+                    }
+
+                    console.log(response.data.articles)
+                })
+                .catch(error=>{
+                    console.log(error.message)
+                })
+            }
         });
 
     </script>

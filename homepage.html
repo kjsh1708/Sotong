@@ -2,100 +2,82 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sotong Game</title>
 
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-      <!-- Bootstrap CSS -->
-      <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'
-          rel='stylesheet'
-          integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC'
-          crossorigin='anonymous'>
+     <!-- Vue 3: development -->
+     <script src="https://unpkg.com/vue@next"></script>
   
-      <!-- Vue 3: development -->
-      <script src="https://unpkg.com/vue@next"></script>
+     <!-- Axios -->
+     <script src="https://unpkg.com/axios/dist/axios.js"></script>
   
-      <!-- Axios -->
-      <script src="https://unpkg.com/axios/dist/axios.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+     rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> 
+
+     <script src="js/jquery-3.4.1.min.js"></script>
+
+     <!-- Bootstrap Javascript -->
+     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'
+     integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM'
+     crossorigin='anonymous'></script>
   
-  
-    <link rel="stylesheet" href="css/homepage.css"/>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
     
 <style>
       body {
-  background-image: url(img/sgbg_e.jpg);
+  background-image: url(img/card.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color:#464646;
+  padding-top:700px
+}
+
+.nav-link{
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* For mobile devices */
 @media only screen and (max-width: 767px) {
   body {
-    background-image: url(img/sgbg_e.jpg);
+    background-image: url(img/card.jpeg);
   }}
 </style>
 </head>
 
 
 <body> 
+
+  <div id='app' class="container">
+    <squid-menu></squid-menu>
+<div>
+
+  <div class="container text-center bg-light" style="padding:0px;">
+    <img src="https://fontmeme.com/permalink/211101/1c48409bbdd3cfa10cbef2d090225916.png" alt="squid-game-font" border="0">
+  </div>
+
+
+    <!-- <embed src = 'r/pinksol.mp3' autostart='true' loop = 'true' hidden = 'true'> -->
+
  
-    <div class="topnav" id="myTopnav">
-        <a href="#gamepage" class="active nav-link">Start</a>
-        <a href="#leaderboard" class="nav-link">Leader Board</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-        <a href="fun.html" class="nav-link">Inspiration</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        </a>
-    </div>
-    <embed src = 'r/pinksol.mp3' autostart='true' loop = 'true' hidden = 'true'>
-
-
-    <script>
-      //Hamburger menu
-      function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-          x.className += " responsive";
-        } else {
-          x.className = "topnav";
-        }
-      }
-      </script>
-
-    <script>
-      var myNav = document.getElementById("myTopnav");
-
-      window.onscroll = function() {
-      "use strict";
-      if (document.body.scrollTop >= 280 || document.documentElement.scrollTop >= 280) {
-      myNav.classList.add("scroll");
-      } else {
-      myNav.classList.remove("scroll");
-      }
-      };
-    </script>
-    
-<script>
-    const app = Vue.createApp({
-        
-    });
-
-</script>
-
-<script src="js/menu.js"></script>
-
-<script>
-    const vm = app.mount('#app');
-</script>
-
-    <script src="js/jquery-3.4.1.min.js"></script>
+     <script>
+         const app = Vue.createApp({
+             
+         });
+     </script>
+ 
+     <script src="js/menu.js"></script>
+ 
+     <script>
+         const vm = app.mount('#app');
+     </script>
 </body>
 </html>

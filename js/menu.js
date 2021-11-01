@@ -1,29 +1,33 @@
-app.component("weather-menu", {
+app.component("squid-menu", {
     data(){
         return {
             my_href: location.href,
             menu: [
                 {
-                    href: "start.html",
+                    href: "homepage.html",
                     text: "Start The Game",
                 },
                 {
-                    href: "inspiration.html",
-                    text: "Inspiration",
+                  href: "Train.html",
+                    text: "Training",
                 },
                 {
-                    href: "Train.html",
-                    text: "Train",
+                  href: "inspiration.html",
+                  text: "Inspiration",
                 },
                 {
                     href: "contact.html",
                     text: "Contact Us",
                 },
+                {
+                  href: "news.html",
+                  text: "Sotong News",
+              },
             ],
         };
     },
     template: `
-    <nav class="navbar navbar-light bg-light fixed-top navbar-expand-sm"> 
+    <nav class="navbar navbar-light bg-light fixed-top navbar-expand-md"> 
     <div class="container-fluid"> 
       <a class="navbar-brand" href="homepage.html"><img src="https://fontmeme.com/permalink/211101/3c011b72ef8151e9209720f80dd3af6f.png" alt="squid-game-font" border="0"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"> 
