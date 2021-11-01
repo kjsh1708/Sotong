@@ -27,7 +27,7 @@ app.component("squid-menu", {
         };
     },
     template: `
-    <nav class="navbar navbar-light bg-light fixed-top navbar-expand-md"> 
+    <nav class="navbar navbar-light bg-light fixed-top navbar-expand-lg"> 
     <div class="container-fluid"> 
       <a class="navbar-brand" href="homepage.html"><img src="https://fontmeme.com/permalink/211101/3c011b72ef8151e9209720f80dd3af6f.png" alt="squid-game-font" border="0"></a>
 
@@ -53,8 +53,7 @@ app.component("squid-menu", {
         
       </div> 
     </div> 
-  </nav> 
-   `,
+  </nav>`,
 
 });
 
