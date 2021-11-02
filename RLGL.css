@@ -1,14 +1,37 @@
-#headerNav{
-    
-}
-#end {
+#header_img{
+    object-fit: contain;
     height:10vh;
 }
 
+
+#end {
+    height:10vh;
+
+
+}
+
 #pf {
+    /* Need to ensure that only the top and bottom borders appear */
     height: 70vh;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: red;
+
 }
 
 #start {
     height:10vh;
+    
 }
+
+#image1 {
+    
+    height: 50px;
+    width: 20px;
+    /* border-width: 10px;
+    border-style: solid;
+    border-color: blue; */
+  }
