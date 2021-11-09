@@ -1,37 +1,60 @@
-#header_img{
-    object-fit: contain;
-    height:10vh;
+#header_img {
+  object-fit: contain;
+  height: 10vh;
 }
 
-
 #end {
-    height:10vh;
-
-
+  height: 10vh;
 }
 
 #pf {
-    /* Need to ensure that only the top and bottom borders appear */
-    height: 70vh;
-    border-top: 1px;
-    border-bottom: 1px;
-    border-left: 0px;
-    border-right: 0px;
-    border-style: solid;
-    border-color: red;
-
+  /* Need to ensure that only the top and bottom borders appear */
+  height: 70vh;
+  border-top: 3px;
+  border-bottom: 1px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+  border-color: red;
 }
 
 #start {
-    height:10vh;
-    
+  height: 10vh;
+  
 }
 
 #image1 {
-    
-    height: 50px;
-    width: 20px;
-    /* border-width: 10px;
+  height: 4%;
+  width: 2%;
+  /* border-width: 10px;
     border-style: solid;
     border-color: blue; */
+}
+
+#overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-x: hidden;
+    
+    color: whitesmoke;
+  }
+
+  #overlay_doll {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /* background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9); */
+    overflow-x: hidden;
+    color: whitesmoke;
+    display: none;
   }

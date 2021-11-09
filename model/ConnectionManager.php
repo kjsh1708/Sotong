@@ -2,7 +2,7 @@
 class ConnectionManager {
   public function getConnection() {
     $servername = 'localhost';
-    $dbname = 'highscore';
+    $dbname = 'gamesscoreboard';
     $username = 'root';
     $password = '';
     $port = 3306;
