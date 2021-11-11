@@ -18,27 +18,40 @@
 
 <link rel="stylesheet" href="css/glass.css">
 
-<link rel="stylesheet" href="css/sotong.css"/>
-
 </head>
 <body style="background-image: url('img/squid1.jpeg');background-size: cover;">
+
+  <div class="container-fluid" id="overlay" onload="on()" onclick="off()">
+    <div class="text-center pt-5">
+      <h1>How to play the game</h1>
+      <h2>Start game by clicking on the screen</h2>
+      <img src='img/glass_tut.gif' width="600" height="400px" class="mb-2">
+      <h2>Scroll to the bottom of page!</h2>
+      <br>
+      <h3>1.Click on either box which are marked as "Jump Here" </h3><br>
+      <h3>2.If you clicked the correct box, you can proceed to the next row </h3><br>
+      <h3>3.If you clicked the wrong box, you will get eliminated </h3><br>
+      <h3>4.When reaching the end, Click "End Here" box to complete the game</h3><br>
+      <h1>Click anywhere to continue and have fun !</h1>
+    </div>
+    </div>
 
   <div style="background-color: white;padding:0;" class=" container mt-2 text-center">
   <img class="img-fluid" src="https://fontmeme.com/permalink/211014/243f2b7c72528c9d8317b73e580da21c.png">
   </div>
 
-  <div id="main"> 
+  <div id="main" class="container"> 
 
-    <div class="text-center">
+    <div class="text-center container">
     <button class=" mt-5 text-white" onclick=Winner() disabled="disabled" id="win">End Here</button>
     </div>
 
       <div class="container pt-5 text-center">
         <div class="row justify-content-around">
-          <div class="col-4">
+          <div class="col">
             <button id="fifth1" disabled="disabled" onclick=Break()>Jump Here</button>
           </div>
-          <div class="col-4">
+          <div class="col">
             <button id="fifth2" disabled="disabled" onclick="EnableEndButton()">Jump Here</button>
           </div>
         </div>
@@ -46,10 +59,10 @@
 
       <div class="container pt-5 text-center">
           <div class="row justify-content-around">
-            <div class="col-4">
+            <div class="col">
               <button id="fourth1" disabled="disabled" onclick=Break()>Jump Here</button>
             </div>
-            <div class="col-4">
+            <div class="col">
               <button id="fourth2" disabled="disabled" onclick="EnableRow5Button()">Jump Here</button>
             </div>
           </div>
@@ -57,10 +70,10 @@
 
       <div class="container pt-5 text-center">
         <div class="row justify-content-around">
-          <div class="col-4">
+          <div class="col">
             <button id="third1" disabled="disabled" onclick="EnableRow4Button()">Jump Here</button>
           </div>
-          <div class="col-4">
+          <div class="col">
             <button id="third2" disabled="disabled" onclick=Break()>Jump Here</button>
           </div>
         </div>
@@ -68,10 +81,10 @@
 
       <div class="container pt-5 text-center">
         <div class="row justify-content-around">
-          <div class="col-4" >
+          <div class="col" >
             <button id="second1" disabled="disabled" onclick=Break()>Jump Here</button>
           </div>
-          <div class="col-4">
+          <div class="col">
             <button id="second2" disabled="disabled" onclick="EnableRow3Button()">Jump Here</button>
           </div>
         </div>
@@ -79,17 +92,17 @@
 
       <div class="container pt-5 text-center">
         <div class="row justify-content-around">
-          <div class="col-4">
+          <div class="col">
             <button id="first1" onclick=Break()>Jump Here</button>
           </div>
-          <div class="col-4">
+          <div class="col">
             <button id="first2" onclick="EnableRow2Button()">Jump Here</button>
           </div>
         </div>
       </div>
 
       <p class="text-center mt-5 text-dark mb-5 bg-info p-5">Start From Here</p>
-      </div>
+    </div>
 
 
 
@@ -172,6 +185,15 @@
         $("#but2").click(function() {
           location.href = "homepage.html";
         });
+
+        function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+  game_start();
+}
       
 
       </script>
