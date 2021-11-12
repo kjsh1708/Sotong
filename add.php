@@ -2,12 +2,13 @@
 //common.php since connectionmanager is witihin model
 require_once "common.php";
 $data = json_decode(file_get_contents("php://input"),true);
-$highscore = $data['Highscore'];
-$HSname = $data['playerName'];
-var_dump($highscore,$HSname);
+
+// var_dump($highscore,$HSname);
 $gameName =  "Red Light Green Light";
 //Data passed by axios 
 if(isset($highscore) && isset($name)){
+    $highscore = $data['Highscore'];
+$HSname = $data['playerName'];
     echo $highscore, $name;
 }
 else{
