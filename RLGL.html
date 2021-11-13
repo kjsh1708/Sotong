@@ -72,6 +72,8 @@
     </div>
   </div>
 
+
+
   <!-- Overlay for the doll on redlight -->
   <!-- <div class="container-fluid" id="overlay_doll">
       <div class="h-100 row align-items-center text-center">
@@ -94,6 +96,7 @@
 
       <div id="end" class="row">
         <!-- Place the gif of the doll turning around -->
+        <div><h1><span id="time">1:30</span></h1></div>
         <video id="turnVid">
           <source src="./rlgl_images/dollturn.mp4" type="video/mp4" />
         </video>
@@ -109,8 +112,27 @@
   </body>
 
   <script>
-    //Capture Username at the start
-    //change this to a prompt box and input will be name , time is auto saved
+    // countdown timer for game 
+    function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (timer-- < 0) {
+            cannot_move()
+        }
+    }, 1000);
+}
+
+
+   
+    //change this to a prompt box and input will be name 
     var HSname = prompt("What is your name player?");
     // Validation to ensure that user enters only alpha num
     var regEx = /^[0-9a-zA-Z]+$/;
@@ -158,6 +180,11 @@
     function off() {
       document.getElementById("overlay").style.display = "none";
       game_start();
+        //1m30s (in seonds) timer start
+    var oneMin =60,
+        display = document.querySelector('#time');
+    startTimer(oneMin , display);
+
     }
     //// Timer to be implemented
 
