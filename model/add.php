@@ -22,7 +22,7 @@ $connMgr = new ConnectionManager();
 $conn = $connMgr->getConnection();
 
 
-$sql = "INSERT INTO highscores (name, score, game) VALUES (:HSname, :highscore, :gameName)";
+$sql = "INSERT INTO sotong_leaderboard (name, score, game) VALUES (:HSname, :highscore, :gameName)";
         $stmt = $conn->prepare($sql);
  
         $stmt->bindParam(":HSname", $HSname, PDO::PARAM_STR);

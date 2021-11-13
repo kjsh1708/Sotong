@@ -7,8 +7,8 @@ $scores = $dao->getAll(); // Get an Indexed Array of highscore objects
 $items = [];
 foreach( $scores as $score_object ) {
     $item = [];
-    $item["id"] = $score_object->getID();
-    $item["name"] = $score_object->getName();
+    $item["ID"] = $score_object->getID();
+    $item["Name"] = $score_object->getName();
     $item["RLGL"] = $score_object->getRLGL();
     $item["TOW"] = $score_object->getTOW();
     $item["Marble"] = $score_object->getMarble();
