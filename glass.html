@@ -20,6 +20,12 @@
   <link rel="stylesheet" href="css/glass.css">
   <link rel="stylesheet" href="css/master.css">
 
+  <style>
+    button{
+      font-family: "SquidGame";
+    }
+  </style>
+
 </head>
 
 <body style="background-image: url('img/squid1.jpeg');background-size: cover;">
@@ -35,7 +41,7 @@
       <h3>2.If you clicked the correct box, you can proceed to the next row </h3><br>
       <h3>3.If you clicked the wrong box, you will get eliminated </h3><br>
       <h3>4.When reaching the end, Click "End Here" box to complete the game</h3><br>
-      <h1>Click anywhere to continue and have fun !</h1>
+      <h1 style="font-family: SquidGame;">Click anywhere to continue and have fun !</h1>
     </div>
   </div>
 
@@ -46,7 +52,7 @@
   <div id="main" class="container">
 
     <div class="text-center container">
-      <button class=" mt-5 text-white" onclick=Winner() disabled="disabled" id="win">End Here</button>
+      <button class=" mt-5" onclick=Winner() disabled="disabled" id="win">End Here</button>
     </div>
 
     <div class="container pt-5 text-center">
@@ -131,7 +137,7 @@
   <div class="container-fluid" id="overlay_lose">
     <div class="h-100 row align-items-center text-center">
       <div class="col">
-        <img src="img/glass_bridge.gif" height="50%" width="70%" />
+        <img src="img/train/glass_bridge.gif" height="50%" width="70%" />
         <br />
         <h1 class="danger">You died</h1>
       </div>
@@ -142,7 +148,7 @@
   <div class="container-fluid" id="overlay_win">
     <div class="h-100 row align-items-center text-center">
       <div class="col">
-        <img src="img/moneybank.gif" height="40%" width="60%" />
+        <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
         <br />
         <h1>You Won !</h1>
       </div>
