@@ -88,8 +88,8 @@
     <!-- Start, PF, End -->
     <div class="container-fluid">
       <!-- Header Nav -->
-      <div id="header_img">
-        <h1>Red Light Green Light</h1>
+      <div class="text-center">
+      <img class="img-fluid" src="https://fontmeme.com/permalink/211113/0ee3d06470b606c72a880d84d3292ecb.png" alt="squid-game-font" border="0">
       </div>
 
       <!-- end point -->
@@ -133,20 +133,20 @@
 
    
     //change this to a prompt box and input will be name 
-    var HSname = prompt("What is your name player?");
-    // Validation to ensure that user enters only alpha num
-    var regEx = /^[0-9a-zA-Z]+$/;
+    // var HSname = prompt("What is your name player?");
+    // // Validation to ensure that user enters only alpha num
+    // var regEx = /^[0-9a-zA-Z]+$/;
 
-    if (!HSname.match(regEx)) {
-      //submit name and other data via axios
+    // if (!HSname.match(regEx)) {
+    //   //submit name and other data via axios
 
-      // console.log(HS, HSname);
-      //Chage this to redirect to PHP page which will save info to DB
-      // window.location.href = "./RLGLResults.html";
-      alert("Please enter letters and numbers only, no spaces.");
-      var HSname = "";
-      prompt("What is your name, Player?");
-    }
+    //   // console.log(HS, HSname);
+    //   //Chage this to redirect to PHP page which will save info to DB
+    //   // window.location.href = "./RLGLResults.html";
+    //   alert("Please enter letters and numbers only, no spaces.");
+    //   var HSname = "";
+    //   prompt("What is your name, Player?");
+    // }
 
     //start and stop video
     var endzoneVid = document.getElementById("turnVid");
