@@ -57,8 +57,15 @@ background-image: url(img/dark.jpeg);
         <!-- Display scores table     -->
         <div class="container text-white">
         <table class="table m-2 text-white" v-if="scores.length > 0">
-            <tr><th>ID</th><th>Name</th><th>Score</th><th>Game</th></tr>
-            <tr v-for="score in scores">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Red Light Green Light</th>
+                <th>Tug of War</th>
+                <th>Marble</th>
+                <th>Glass</th>
+            </tr>
+            <tr v-for="score in scores" class="text-center">
                 <td>{{ score.ID }}</td>
                 <td>{{ score.Name }}</td>
                 <td>{{ score.RLGL }}</td>
