@@ -17,7 +17,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="css/glass.css">
-<link rel="stylesheet" href="css/styling.css">
 
 </head>
 <body style="background-image: url('img/squid1.jpeg');background-size: cover;">
@@ -104,7 +103,7 @@
 
       <p class="text-center mt-5 text-dark mb-5 bg-info p-5">Start From Here</p>
     </div>
-
+<!-- 
       <div class="eliminated-screen text-center container-fluid" style="margin:auto;">
         <img id="popupimg" src="img/soldier.png" class="img-fluid">
         <div id="popdiv" class="container-fluid">
@@ -118,16 +117,37 @@
       <div class="winner-screen text-center container-fluid" style="margin:auto;">
         <img id="popupimg" src="img/steak.png" class="img-fluid">
         <div id="popdiv2">
-          <h1 >
+          <h1 style="margin:0;padding-top:50px;">
             You've Won This Round
           </h1>
           <button id="but2" style="padding:0px;">Go To Next Round</button>
         </div>
-      </div>
+      </div> -->
 
+      <!-- Overlay for lose -->
+  <div class="container-fluid" id="overlay_lose">
+    <div class="h-100 row align-items-center text-center">
+      <div class="col">
+        <img src="img/glass_bridge.gif" height="50%" width="70%" />
+        <br />
+        <h1 class="danger">You died</h1>
+      </div>
+    </div>
+  </div>
+
+  <!--Overlay for winning -->
+  <div class="container-fluid" id="overlay_win">
+    <div class="h-100 row align-items-center text-center">
+      <div class="col">
+        <img src="img/moneybank.gif" height="40%" width="60%" />
+        <br />
+        <h1>You Won !</h1>
+        <h4>Your next Game will begin shortly</h4>
+      </div>
+    </div>
+  </div>
 
       <script>
-
         //Remove disable button so user can proceed to another row of glasses
         function EnableRow2Button(){
           document.getElementById('second1').removeAttribute('disabled');
@@ -170,31 +190,71 @@
         }
 
         function Winner(){
-          $(".winner-screen").fadeTo(200, 1);
-        }
+          document.getElementById("overlay_win").style.display = "block";
+        setTimeout(function () {
+          document.location.href = "Result.html";
+        }, 6000);
+      }
+        
         
 
         //End game if 0 , Proceed to another row if 1
         function Break(){
-          $(".eliminated-screen").fadeTo(200, 1);
+          document.getElementById("overlay_lose").style.display = "block";
+
+      //clear stopwatch
+      reset_time();
+      // set a timer to let them see you lose and send them back to the  home page
+      //send user back to the homepage
+      setTimeout(function () {
+        document.location.href = "homepage.html";
+      }, 3000);
         }
 
-       
-        $("#but2").click(function() {
-          location.href = "homepage.html";
-        });
-
         function on() {
-  document.getElementById("overlay").style.display = "block";
-}
+          document.getElementById("overlay").style.display = "block";}
 
-function off() {
-  document.getElementById("overlay").style.display = "none";
-  game_start();
-}
-      
+        function off() {
+        document.getElementById("overlay").style.display = "none";
+        start_time();}
 
-      </script>
+        var minutes = 0;
+    var seconds = 0;
+
+    //Define var to hold setInterval() function
+    let interval = null;
+
+    //Stopwatch function (logic to determine when to increment next value, etc.)
+    function stopWatch() {
+      seconds++;
+
+      //Logic to determine when to increment next value
+      if (seconds / 60 === 1) {
+        seconds = 0;
+        minutes++;
+      }
+    }
+
+    function start_time() {
+      //Start the stopwatch (by calling the setInterval() function)
+      interval = window.setInterval(stopWatch, 1000);
+    }
+
+    function stop_time() {
+      window.clearInterval(interval);
+      //get these values -- lowerr the highscore better == faster
+      var highscore = minutes * 60 + seconds;
+      return highscore;
+    }
+
+    //Function to reset the stopwatch
+    function reset_time() {
+      window.clearInterval(interval);
+      seconds = 0;
+      minutes = 0;
+    }
+
+</script>
 
 
 
