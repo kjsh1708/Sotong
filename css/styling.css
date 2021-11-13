@@ -1,0 +1,8 @@
+@font-face{
+    font-family: 'SquidGame' ;
+    src: url("sgfont.ttf") ;
+}
+
+.nav-link{
+  font-family: 'SquidGame' ;
+}

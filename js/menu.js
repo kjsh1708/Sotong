@@ -4,10 +4,6 @@ app.component("squid-menu", {
             my_href: location.href,
             menu: [
                 {
-                    href: "homepage.html",
-                    text: "Start The Game",
-                },
-                {
                   href: "Train.html",
                     text: "Training",
                 },
@@ -42,7 +38,7 @@ app.component("squid-menu", {
         
             <li class="nav-item" v-for="item in menu">
             <a class="nav-link" aria-current="page" :href='item.href'>
-            {{item.text}}</a></li>
+            {{item.text}} <span style="color:pink;">|</span></a></li>
 
           </ul> 
         </div> 
