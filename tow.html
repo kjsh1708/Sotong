@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tug of War</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        body {
+            background-image: url(img/tow/tow.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: #464646;
+            margin: 0;
+            overflow-x: hidden;
+            height: 180vh;
+            user-select: none;
+        }
+
+        #main {
+            position: relative;
+            /*disable tugmain.style.left when adjusting horizontal position here*/
+            width: 66.8vw;
+            margin: auto;
+            transition: left 0.5s;
+        }
+
+        #com {
+            position: relative;
+            width: 2.8vw;
+            top: -4.1vw;
+            left: 30.6vw;
+            transition: transform 1s, top 1s, left 1s;
+        }
+
+        .head {
+            border: 0.4vw solid black;
+            border-radius: 50%;
+            width: 2vw;
+            height: 2vw;
+        }
+
+        .body {
+            background-color: black;
+            width: 0.6vw;
+            height: 5vw;
+            margin-left: 1.1vw;
+        }
+
+        #right-arm {
+            position: absolute;
+            left: 1.7vw;
+            top: 4vw;
+            background-color: black;
+            width: 1.7vw;
+            height: 0.7vw;
+        }
+
+        #left-arm {
+            position: absolute;
+            left: -0.6vw;
+            top: 4vw;
+            background-color: black;
+            width: 1.7vw;
+            height: 0.7vw;
+            transition: transform 1.5s, width 1.5s, top 1.5s;
+        }
+
+        .left-leg {
+            background-color: black;
+            width: 0.4vw;
+            height: 3vw;
+            transform: rotate(20deg);
+            margin-left: 0.6vw;
+        }
+
+        .right-leg {
+            position: absolute;
+            background-color: black;
+            width: 0.4vw;
+            height: 3vw;
+            transform: rotate(-20deg);
+            left: 1.7vw;
+            bottom: 0;
+        }
+
+        #rope {
+            background-color: black;
+            width: 30vw;
+            position: relative;
+            left: 1.7vw;
+            top: 0.1vw;
+            transform-origin: top left;
+            transition: transform 0.5s;
+        }
+
+        #rope>div {
+            background-color: black;
+            height: 0.5vw;
+            position: relative;
+            left: 30vw;
+            transform-origin: top left;
+        }
+
+        #platform {
+            background-color: black;
+            height: 1vw;
+        }
+
+        #gap {
+            background-color: white;
+            width: 35%;
+            height: 100%;
+            margin: auto;
+        }
+
+        #left-blade {
+            left: 29.5vw;
+            border-left: 6vw solid gray;
+        }
+
+        #right-blade {
+            left: 64.5vw;
+            border-right: 6vw solid gray;
+        }
+
+        .blade {
+            border-bottom: 3vw solid transparent;
+            height: 2vw;
+            position: absolute;
+            top: 0;
+            transition: top 1s;
+        }
+
+        @keyframes swing {
+            25% {
+                transform: rotate(108deg);
+            }
+
+            50% {
+                transform: rotate(58deg);
+            }
+
+            75% {
+                transform: rotate(88deg);
+            }
+
+            100% {
+                transform: rotate(78deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid" id="overlay">
+        <div class="text-center">
+            <h1>How to play the game</h1>
+            <h2>Start game by clicking on the screen</h2>
+            <img src="img/rlgl/mouseLeftClick.gif" width="50px" height="50px" />
+            <h3>
+                1.Click on screen as many times as possible when the screen is
+                <span style="color: green">Green</span> while music is playing
+            </h3>
+            <br />
+            <h3>
+                2. When the screen turns red <b>OR</b> music stops ,
+                <span style="color: red">STOP!!</span>
+            </h3>
+            <br />
+            <h3>3. Make it to the end to win :)</h3>
+            <br />
+            <div class="col">
+                <img src="img/rlgl/JHY.gif" height="18%" width="35%" />
+            </div>
+            <br />
+            <h1>Click anywhere to continue and have fun !</h1>
+        </div>
+    </div>
+    <!-- Overlay for lose -->
+    <div class="container-fluid" id="overlay_lose">
+        <div class="h-100 row align-items-center text-center">
+            <div class="col">
+                <img src="img/rlgl/Caught.jpg" height="50%" width="70%" />
+                <br />
+                <h1 class="danger">You died</h1>
+            </div>
+        </div>
+    </div>
+
+    <!--Overlay for winning -->
+    <div class="container-fluid" id="overlay_win">
+        <div class="h-100 row align-items-center text-center">
+            <div class="col">
+                <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
+                <br />
+                <h1>You Won !</h1>
+                <h4>Your next Game will begin shortly</h4>
+            </div>
+        </div>
+    </div>
+
+    <div id="left-blade" class="blade"></div>
+
+    <div id="right-blade" class="blade"></div>
+
+    <h1 style="text-align: center;">TUG TO THE <span style="color: red;">DEATH</span></h1>
+
+    <div id="controls">
+        <button id="pullBtn">PULL</button><button id="holdBtn">HOLD</button>
+    </div>
+
+    <br>
+
+    <div id="main">
+
+        <div id="user">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div id="right-arm">
+                <div id="rope">
+                    <div>
+                        <div id="com">
+                            <div class="head"></div>
+                            <div id="left-arm"></div>
+                            <div class="body"></div>
+                            <div class="left-leg"></div>
+                            <div class="right-leg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-leg"></div>
+            <div class="right-leg"></div>
+        </div>
+    </div>
+
+    <div id="platform">
+        <div id="gap"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+<script>
+    pullBtn = document.getElementById("pullBtn");
+    holdBtn = document.getElementById("holdBtn");
+    tugMain = document.getElementById("main");
+    overlay = document.getElementById("overlay");
+    started = 0;
+    canPull = 0;
+    enemyForce = 1;
+    pulls = 0;
+    strength = 1;
+
+    tugMain.style.left = 0;
+
+    function startGame() {
+        if (!started) {
+            started = setInterval(enemyPull, 500);
+        }
+    }
+
+    function pullOnce() {
+        if (canPull) {
+            tugMain.style.left = `${parseFloat(tugMain.style.left) - strength * 1}%`;
+        }
+        if (parseFloat(tugMain.style.left) <= -15.8) {
+            clearInterval(started);
+            sessionStorage.setItem("tow", pulls / 2)  // store highscore in session
+            var rope = document.getElementById("rope")
+            rope.style.transform = "rotate(12deg)"
+            rope.firstElementChild.style.animation = "swing 6s forwards"
+            var com = document.getElementById("com")
+            com.style.transform = "rotate(-80deg)"
+            com.style.top = "-6.5vw"
+            com.style.left = "31vw"
+            var leftArm = document.getElementById("left-arm")
+            leftArm.style.transform = "rotate(45deg)"
+            leftArm.style.width = "2.2vw"
+            leftArm.style.top = "3.4vw"
+            var html = $("html, body")
+            setTimeout(() => {
+                html.animate({
+                    scrollTop: "140"
+                }, 200)
+            }, 100);
+            setTimeout(() => {
+                html.animate({
+                    scrollTop: "0"
+                })
+            }, 3000);
+            var blade = document.getElementById("left-blade")
+            blade.style.top = "14vw"
+            document.getElementById("overlay_win").style.display = "block";
+            setTimeout(function () {
+                document.location.href = "marble_game.html";
+            }, 6000);
+        }
+    }
+
+    function holdGround() {
+        enemyForce = 0.5;
+    }
+
+    function releaseGround() {
+        enemyForce = 1;
+    }
+
+    function enemyPull() {
+        if (Math.random() > 0.9) { //change back to 0.3
+            canPull = 0;
+            pullBtn.style.backgroundColor = "initial";
+            pullBtn.style.color = "initial";
+            holdBtn.style.backgroundColor = "lightblue";
+            holdBtn.style.color = "white";
+            tugMain.style.left = `${parseFloat(tugMain.style.left) + strength * enemyForce * 1}%`;
+            if (parseFloat(tugMain.style.left) >= 15.8) {
+                clearInterval(started);
+                var mainGame = document.getElementById("main")
+                mainGame.style.transition = "none"
+                mainGame.style.left = "79.2vw"
+                var ropes = document.getElementById("right-arm").getElementsByTagName("div")
+                for (var i = 0; i < 15; i++) {
+                    ropes[i].style.transform = "rotate(-5deg)"
+                }
+                document.getElementById("overlay_lose").style.display = "block";
+                setTimeout(function () {
+                    document.location.href = "homepage.html";
+                }, 3000);
+            }
+        } else {
+            canPull = 1;
+            holdBtn.style.backgroundColor = "initial";
+            holdBtn.style.color = "initial";
+            pullBtn.style.backgroundColor = "lightgreen";
+            pullBtn.style.color = "white";
+        }
+        pulls++;
+        if (pulls % 10 == 0) {
+            strength *= 0.9;
+        }
+    }
+
+    function off() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    overlay.addEventListener("click", off);
+    pullBtn.addEventListener("click", startGame);
+    pullBtn.addEventListener("click", pullOnce);
+    holdBtn.addEventListener("pointerdown", holdGround);
+    holdBtn.addEventListener("pointerup", releaseGround);
+</script>
+
+</html>
