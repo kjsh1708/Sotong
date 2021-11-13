@@ -9,9 +9,7 @@ class HighscoreDAO {
     $conn = $connMgr->getConnection();
 
     // STEP 2
-    $sql = "SELECT *
-
-            FROM highscores"; // SELECT * FROM highscores; 
+    $sql = "SELECT *FROM Sotong_Leaderboard "; // SELECT * FROM highscores; 
     $stmt = $conn->prepare($sql);
 
       // STEP 3
@@ -23,8 +21,8 @@ class HighscoreDAO {
  while( $row = $stmt->fetch() ) {
      $scores[] =
          new Highscore(
-             $row['id'],
-             $row['name'],
+             $row['ID'],
+             $row['Name'],
              $row['RLGL'],
              $row['TOW'],
              $row['Marble'],

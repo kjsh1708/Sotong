@@ -16,7 +16,7 @@ app.component("squid-menu", {
                   text: "Sotong News",
               },
               {
-                href: "Results.html",
+                href: "Leaderboard.html",
                 text: "Leaderboard",
             },
             ],

@@ -1,16 +1,16 @@
 <?php
 
 class Highscore {
-    private $id;
-    private $name;
+    private $ID;
+    private $Name;
     private $RLGL;
     private $TOW;
     private $Marble;
     private $Glass;
 
-    public function __construct($id, $name, $RLGL,$TOW , $Marble, $Glass) {
-        $this->id = $id;
-        $this->name = $name;
+    public function __construct($ID, $Name, $RLGL,$TOW , $Marble, $Glass) {
+        $this->ID = $ID;
+        $this->Name = $Name;
         $this->RLGL=$RLGL;
         $this->TOW=$TOW;
         $this->Marble=$Marble;
@@ -19,11 +19,11 @@ class Highscore {
     }
 
     public function getID() {
-        return $this->id;
+        return $this->ID;
     }
 
     public function getName() {
-        return $this->name;
+        return $this->Name;
     }
 
     /**
