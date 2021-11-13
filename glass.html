@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jump Glass</title>
 
-    <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jump Glass</title>
+
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
+  </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="css/glass.css">
-<link rel="stylesheet" href="css/master.css">
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/master.css">
 
 </head>
+
 <body style="background-image: url('img/squid1.jpeg');background-size: cover;">
 
   <div class="container-fluid" id="overlay" onload="on()" onclick="off()">
@@ -35,76 +37,76 @@
       <h3>4.When reaching the end, Click "End Here" box to complete the game</h3><br>
       <h1>Click anywhere to continue and have fun !</h1>
     </div>
-    </div>
-
-  <div style="background-color: white;padding:0;" class=" container mt-2 text-center">
-  <img class="img-fluid" src="https://fontmeme.com/permalink/211014/243f2b7c72528c9d8317b73e580da21c.png">
   </div>
 
-  <div id="main" class="container"> 
+  <div class=" container mt-3 text-center">
+    <img src="https://fontmeme.com/permalink/211113/1e76a2ad84b0393bbfeaf470e5e076a1.png" alt="squid-game-font" border="0">
+  </div>
+
+  <div id="main" class="container">
 
     <div class="text-center container">
-    <button class=" mt-5 text-white" onclick=Winner() disabled="disabled" id="win">End Here</button>
+      <button class=" mt-5 text-white" onclick=Winner() disabled="disabled" id="win">End Here</button>
     </div>
 
-      <div class="container pt-5 text-center">
-        <div class="row justify-content-around">
-          <div class="col">
-            <button id="fifth1" disabled="disabled" onclick=Break()>Jump Here</button>
-          </div>
-          <div class="col">
-            <button id="fifth2" disabled="disabled" onclick="EnableEndButton()">Jump Here</button>
-          </div>
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="fifth1" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="fifth2" disabled="disabled" onclick="EnableEndButton()">Jump Here</button>
         </div>
       </div>
-
-      <div class="container pt-5 text-center">
-          <div class="row justify-content-around">
-            <div class="col">
-              <button id="fourth1" disabled="disabled" onclick=Break()>Jump Here</button>
-            </div>
-            <div class="col">
-              <button id="fourth2" disabled="disabled" onclick="EnableRow5Button()">Jump Here</button>
-            </div>
-          </div>
-      </div>
-
-      <div class="container pt-5 text-center">
-        <div class="row justify-content-around">
-          <div class="col">
-            <button id="third1" disabled="disabled" onclick="EnableRow4Button()">Jump Here</button>
-          </div>
-          <div class="col">
-            <button id="third2" disabled="disabled" onclick=Break()>Jump Here</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="container pt-5 text-center">
-        <div class="row justify-content-around">
-          <div class="col" >
-            <button id="second1" disabled="disabled" onclick=Break()>Jump Here</button>
-          </div>
-          <div class="col">
-            <button id="second2" disabled="disabled" onclick="EnableRow3Button()">Jump Here</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="container pt-5 text-center">
-        <div class="row justify-content-around">
-          <div class="col">
-            <button id="first1" onclick=Break()>Jump Here</button>
-          </div>
-          <div class="col">
-            <button id="first2" onclick="EnableRow2Button()">Jump Here</button>
-          </div>
-        </div>
-      </div>
-
-      <p class="text-center mt-5 text-dark mb-5 bg-info p-5">Start From Here</p>
     </div>
 
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="fourth1" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="fourth2" disabled="disabled" onclick="EnableRow5Button()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="third1" disabled="disabled" onclick="EnableRow4Button()">Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="third2" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="second1" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="second2" disabled="disabled" onclick="EnableRow3Button()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="first1" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="first2" onclick="EnableRow2Button()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center mt-5 text-dark mb-5 bg-info p-5">Start From Here</p>
+  </div>
+  <!-- 
       <div class="eliminated-screen text-center container-fluid" style="margin:auto;">
         <img id="popupimg" src="img/soldier.png" class="img-fluid">
         <div id="popdiv" class="container-fluid">
@@ -118,92 +120,153 @@
       <div class="winner-screen text-center container-fluid" style="margin:auto;">
         <img id="popupimg" src="img/steak.png" class="img-fluid">
         <div id="popdiv2">
-          <h1 >
+          <h1 style="margin:0;padding-top:50px">
             You've Won This Round
           </h1>
           <button id="but2" style="padding:0px;">Go To Next Round</button>
         </div>
+      </div> -->
+
+  <!-- Overlay for lose -->
+  <div class="container-fluid" id="overlay_lose">
+    <div class="h-100 row align-items-center text-center">
+      <div class="col">
+        <img src="img/glass_bridge.gif" height="50%" width="70%" />
+        <br />
+        <h1 class="danger">You died</h1>
       </div>
+    </div>
+  </div>
+
+  <!--Overlay for winning -->
+  <div class="container-fluid" id="overlay_win">
+    <div class="h-100 row align-items-center text-center">
+      <div class="col">
+        <img src="img/moneybank.gif" height="40%" width="60%" />
+        <br />
+        <h1>You Won !</h1>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //Remove disable button so user can proceed to another row of glasses
+    function EnableRow2Button() {
+      document.getElementById('second1').removeAttribute('disabled');
+      document.getElementById('second2').removeAttribute('disabled');
+
+      document.getElementById('first1').disabled = true;
+      document.getElementById('first2').disabled = true;
+    }
+
+    function EnableRow3Button() {
+      document.getElementById('third1').removeAttribute('disabled');
+      document.getElementById('third2').removeAttribute('disabled');
+
+      document.getElementById('second1').disabled = true;
+      document.getElementById('second2').disabled = true;
+    }
+
+    function EnableRow4Button() {
+      document.getElementById('fourth1').removeAttribute('disabled');
+      document.getElementById('fourth2').removeAttribute('disabled');
+
+      document.getElementById('third1').disabled = true;
+      document.getElementById('third2').disabled = true;
+    }
+
+    function EnableRow5Button() {
+      document.getElementById('fifth1').removeAttribute('disabled');
+      document.getElementById('fifth2').removeAttribute('disabled');
+
+      document.getElementById('fourth1').disabled = true;
+      document.getElementById('fourth2').disabled = true;
+    }
+
+    function EnableEndButton() {
+      document.getElementById('fifth1').disabled = true;
+      document.getElementById('fifth2').disabled = true;
+
+      document.getElementById('win').removeAttribute('disabled');
+
+    }
+
+    function Winner() {
+      document.getElementById("overlay_win").style.display = "block";
+      setTimeout(function () {
+        document.location.href = "Leaderboard.html";
+      }, 6000);
+    }
 
 
-      <script>
+    //End game if 0 , Proceed to another row if 1
+    function Break() {
+      document.getElementById("overlay_lose").style.display = "block";
 
-        //Remove disable button so user can proceed to another row of glasses
-        function EnableRow2Button(){
-          document.getElementById('second1').removeAttribute('disabled');
-          document.getElementById('second2').removeAttribute('disabled');
+      //clear stopwatch
+      reset_time();
+      // set a timer to let them see you lose and send them back to the  home page
+      //send user back to the homepage
+      setTimeout(function () {
+        document.location.href = "homepage.html";
+      }, 3000);
+    }
 
-          document.getElementById('first1').disabled=true;
-          document.getElementById('first2').disabled=true;
-        }
+    function on() {
+      document.getElementById("overlay").style.display = "block";
+    }
 
-        function EnableRow3Button(){
-          document.getElementById('third1').removeAttribute('disabled');
-          document.getElementById('third2').removeAttribute('disabled');
+    function off() {
+      document.getElementById("overlay").style.display = "none";
+      start_time();
+    }
 
-          document.getElementById('second1').disabled=true;
-          document.getElementById('second2').disabled=true;
-        }
+    var minutes = 0;
+    var seconds = 0;
 
-        function EnableRow4Button(){
-          document.getElementById('fourth1').removeAttribute('disabled');
-          document.getElementById('fourth2').removeAttribute('disabled');
+    //Define var to hold setInterval() function
+    let interval = null;
 
-          document.getElementById('third1').disabled=true;
-          document.getElementById('third2').disabled=true;
-        }
+    //Stopwatch function (logic to determine when to increment next value, etc.)
+    function stopWatch() {
+      seconds++;
 
-        function EnableRow5Button(){
-          document.getElementById('fifth1').removeAttribute('disabled');
-          document.getElementById('fifth2').removeAttribute('disabled');
+      //Logic to determine when to increment next value
+      if (seconds / 60 === 1) {
+        seconds = 0;
+        minutes++;
+      }
+    }
 
-          document.getElementById('fourth1').disabled=true;
-          document.getElementById('fourth2').disabled=true;
-        }
+    function start_time() {
+      //Start the stopwatch (by calling the setInterval() function)
+      interval = window.setInterval(stopWatch, 1000);
+    }
 
-        function EnableEndButton(){
-          document.getElementById('fifth1').disabled=true;
-          document.getElementById('fifth2').disabled=true;
+    function stop_time() {
+      window.clearInterval(interval);
+      //get these values -- lowerr the highscore better == faster
+      var highscore = minutes * 60 + seconds;
+      return highscore;
+    }
 
-          document.getElementById('win').removeAttribute('disabled');
+    //Function to reset the stopwatch
+    function reset_time() {
+      window.clearInterval(interval);
+      seconds = 0;
+      minutes = 0;
+    }
 
-        }
-
-        function Winner(){
-          $(".winner-screen").fadeTo(200, 1);
-        }
-        
-
-        //End game if 0 , Proceed to another row if 1
-        function Break(){
-          $(".eliminated-screen").fadeTo(200, 1);
-        }
-
-       
-        $("#but2").click(function() {
-          location.href = "homepage.html";
-        });
-
-        function on() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-  document.getElementById("overlay").style.display = "none";
-  // game_start();
-}
-      
-var rlglScore = sessionStorage.getItem("rlgl")
-var towScore = sessionStorage.getItem("tow")
-var marbleScore = sessionStorage.getItem("marble")
-console.log(rlglScore)
-console.log(towScore)
-console.log(marbleScore)
-
-
-      </script>
+    var rlglScore = sessionStorage.getItem("rlgl")
+    var towScore = sessionStorage.getItem("tow")
+    var marbleScore = sessionStorage.getItem("marble")
+    console.log(rlglScore)
+    console.log(towScore)
+    console.log(marbleScore)
+  </script>
 
 
 
 </body>
+
 </html>
