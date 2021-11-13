@@ -11,9 +11,9 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link href="./RLGL.css" rel="stylesheet" type="text/css" />
+    <link href="css/RLGL.css" rel="stylesheet" type="text/css" />
     <title>Red Light Green Light</title>
-    <link rel="shortcut icon" href="./rlgl_images/rlgl.ico" />
+    <link rel="shortcut icon" href="img/rlgl/rlgl.ico" />
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -29,7 +29,7 @@
     <div class="text-center">
       <h1>How to play the game</h1>
       <h2>Start game by clicking on the screen</h2>
-      <img src="./rlgl_images/mouseLeftClick.gif" width="50px" height="50px" />
+      <img src="img/rlgl/mouseLeftClick.gif" width="50px" height="50px" />
       <h3>
         1.Click on screen as many times as possible when the screen is
         <span style="color: green">Green</span> while music is playing
@@ -43,7 +43,7 @@
       <h3>3. Make it to the end to win :)</h3>
       <br />
       <div class="col">
-        <img src="./rlgl_images/JHY.gif" height="18%" width="35%" />
+        <img src="img/rlgl/JHY.gif" height="18%" width="35%" />
       </div>
       <br />
       <h1>Click anywhere to continue and have fun !</h1>
@@ -53,7 +53,7 @@
   <div class="container-fluid" id="overlay_lose">
     <div class="h-100 row align-items-center text-center">
       <div class="col">
-        <img src="./rlgl_images/Caught.jpg" height="50%" width="70%" />
+        <img src="img/rlgl/Caught.jpg" height="50%" width="70%" />
         <br />
         <h1 class="danger">You died</h1>
       </div>
@@ -64,7 +64,7 @@
   <div class="container-fluid" id="overlay_win">
     <div class="h-100 row align-items-center text-center">
       <div class="col">
-        <img src="./rlgl_images/moneybank.gif" height="40%" width="60%" />
+        <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
         <br />
         <h1>You Won !</h1>
         <h4>Your next Game will begin shortly</h4>
@@ -78,7 +78,7 @@
   <!-- <div class="container-fluid" id="overlay_doll">
       <div class="h-100 row align-items-center text-center">
         <div class="col">
-     <img src="./rlgl_images/DollEyes.gif"  height="40%" width="60%">
+     <img src="img/rlgl/DollEyes.gif"  height="40%" width="60%">
       </div>
       </div>
     </div> -->
@@ -96,9 +96,9 @@
 
       <div id="end" class="row">
         <!-- Place the gif of the doll turning around -->
-        <div><h1><span id="time">1:00</span></h1></div>
+        <div><h1><span id="time">1:30</span></h1></div>
         <video id="turnVid">
-          <source src="./rlgl_images/dollturn.mp4" type="video/mp4" />
+          <source src="img/rlgl/dollturn.mp4" type="video/mp4" />
         </video>
       </div>
       <!-- playing field -->
@@ -107,7 +107,7 @@
       <div id="start" class="row"><h1>Start</h1></div>
 
       <!-- Character Model -->
-      <img id="image1" src="./rlgl_images/067.png" alt="067 player" />
+      <img id="image1" src="img/rlgl/067.png" alt="067 player" />
     </div>
   </body>
 
@@ -260,7 +260,7 @@
       playingfield.classList.replace("bg-danger", "bg-success");
       //start music
       var green_music = new Audio(
-        "./rlgl_sound/SQUID_GAME_GREEN_RED_LIGHT.mp3"
+        "audio/SQUID_GAME_GREEN_RED_LIGHT.mp3"
       );
       green_music.play();
       // stop music after 5s
@@ -312,7 +312,7 @@
     // lowered this so that it can match sound track
     function moveUp() {
       // how ,uch the character moves up by
-      objImage.style.bottom = parseInt(objImage.style.bottom) + 5 + "px";
+      objImage.style.bottom = parseInt(objImage.style.bottom) + 10 + "px";
     }
 
     //Now is the tracking of the object on where it is on the screen
