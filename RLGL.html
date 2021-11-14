@@ -127,11 +127,7 @@
     var regEx = /^[0-9a-zA-Z]+$/;
 
     if (!HSname.match(regEx)) {
-      //submit name and other data via axios
 
-      // console.log(HS, HSname);
-      //Chage this to redirect to PHP page which will save info to DB
-      // window.location.href = "./RLGLResults.html";
       alert("Please enter letters and numbers only, no spaces.");
       var HSname = "";
       prompt("What is your name, Player?");
@@ -148,19 +144,19 @@
     }
 
     //Using axios to past to PHP
-    function submitDetails(a, b) {
-      axios
-        .post("./add.php", {
-          Highscore: a,
-          playerName: b,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    // function submitDetails(a, b) {
+    //   axios
+    //     .post("./add.php", {
+    //       Highscore: a,
+    //       playerName: b,
+    //     })
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
     //// Overlay controls
     function on() {
       document.getElementById("overlay").style.display = "block";
@@ -271,14 +267,13 @@
     function game_start() {
       //start the game on greenlight
       var start = document.addEventListener("click", greenlight);
-
-      // need to figure out how to change light every x seconds after the music ends (maybe use a set time out instead)?
+//change light every 5.5s
       window.setInterval(change_light, 5500);
 
       //start the stopwatch
       start_time();
     }
-    // game_start();
+ 
 
     //Moving char across screen
     //init object globally
@@ -321,16 +316,15 @@
         //stop stopwatch
         stop_time();
         var HS = stop_time();
-        // console.log(stop_time());
-        //remove the ability to move and not move
-        submitDetails(HS, HSname);
+
+        // submitDetails(HS, HSname);
 
         sessionStorage.setItem("rlgl", HS); // store highscore in session
 
         // Show them winning overlay and then redirect them to next game
         document.getElementById("overlay_win").style.display = "block";
         setTimeout(function () {
-          document.location.href = "tow.html";
+          document.location.href = "./tow.html";
         }, 6000);
       }
     }
