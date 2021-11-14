@@ -20,6 +20,9 @@
         p{
             color: white ;
         }
+        h3{
+            color:white ;
+        }
         video{
             width:100% ;
             
@@ -35,8 +38,8 @@
         video{
             width: 60% ;
         }
-        button{
-            font-family: 'SquidGame' ;
+        .button_g{
+            font-family:'SquidGame' ;
         }
     </style>
     
@@ -64,6 +67,7 @@
         </div>
       </div>
         <div id="marble" align = 'center'>
+            <squid-menu></squid-menu>
                 <!-- Overlay for lose -->
             <div v-if="game_state=='lose'" class="container-fluid" style='display: block ;' id = 'overlay'>
                 <div class="h-100 row align-items-center text-center">
@@ -72,6 +76,7 @@
                         <img src='img/marble/lose_e.gif'>
                         <br/>
                         <h1 class="danger">You died</h1>
+                        <button type="button" class="button mt-3 mb-3 btn-primary" onClick="window.location.reload();">Try Again</button>
                     </div>
                 </div>
             </div>
@@ -83,7 +88,8 @@
                         <img src="img/rlgl/moneybank.gif"/>
                         <br />
                         <h1>You Won !</h1>
-                        <h4 style='color:white;'>Your next Game will begin shortly</h4>
+                        <h4>Play The Next Game?</h4>
+                        <a type="button" class="button mt-3 mb-3 btn-primary p-3" href="train_glass.html">Next Game</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +117,7 @@
                     <h3 v-if="betAmt > cMarbles">Please enter an amount you have!</h3>
                 </div>
                 <br>
-                <p style='color: black ;'><button v-on:click='play()'>Lock in my choice!</button></p>
+                <p style='color: black ;'><button class = 'button_g' v-on:click='play()'>Lock in my choice!</button></p>
 
                 <!-- This is to play the video if the user is going to lose -->
                 <div v-if='cMarbles < 3'>
@@ -155,16 +161,16 @@
     function off() {
         document.getElementById("overlay").style.display = "none";
     }
-    function win() {
-        setTimeout(function () {
-          document.location.href = "glass.html";
-        }, 5000);
-    }
-    function lose() {
+    //function win() {
+    //    setTimeout(function () {
+    //      document.location.href = "glass.html";
+    //    }, 5000);
+    //}
+    //function lose() {
         // setTimeout(function () {
         //     document.location.href = "homepage.html";
         // }, 5000);
-    }
+    //}
     
 
         const vm = Vue.createApp({
@@ -340,6 +346,8 @@
 
         }).mount('#marble');
     </script>
+
+    <script src="js/menu.js"></script>
 
 </body>
 </html>
