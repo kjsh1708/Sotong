@@ -1,29 +1,25 @@
 <?php
 
 class Highscore {
-    private $ID;
-    private $Name;
-    private $RLGL;
-    private $TOW;
-    private $Marble;
-    private $Glass;
+    private $name;
+    private $rlgl;
+    private $tow;
+    private $marble;
+    private $glass;
+    private $total;
 
-    public function __construct($ID, $Name, $RLGL,$TOW , $Marble, $Glass) {
-        $this->ID = $ID;
-        $this->Name = $Name;
-        $this->RLGL=$RLGL;
-        $this->TOW=$TOW;
-        $this->Marble=$Marble;
-        $this->Glass=$Glass;
+    public function __construct($name, $rlgl, $tow , $marble, $glass, $total) {
+        $this->name = $name;
+        $this->rlgl = $rlgl;
+        $this->tow = $tow;
+        $this->marble = $marble;
+        $this->glass = $glass;
+        $this->total = $total;
      
     }
 
-    public function getID() {
-        return $this->ID;
-    }
-
     public function getName() {
-        return $this->Name;
+        return $this->name;
     }
 
     /**
@@ -31,7 +27,7 @@ class Highscore {
      */ 
     public function getRLGL()
     {
-        return $this->RLGL;
+        return $this->rlgl;
     }
 
     /**
@@ -39,7 +35,7 @@ class Highscore {
      */ 
     public function getTOW()
     {
-        return $this->TOW;
+        return $this->tow;
     }
 
     /**
@@ -47,7 +43,7 @@ class Highscore {
      */ 
     public function getMarble()
     {
-        return $this->Marble;
+        return $this->marble;
     }
 
     /**
@@ -55,7 +51,15 @@ class Highscore {
      */ 
     public function getGlass()
     {
-        return $this->Glass;
+        return $this->glass;
+    }
+
+    /**
+     * Get the value of totalScore
+     */ 
+    public function getTotal()
+    {
+        return $this->total;
     }
 }
 

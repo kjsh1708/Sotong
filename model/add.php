@@ -1,39 +1,40 @@
 <?php
 //common.php since connectionmanager is witihin model
-require_once "common.php";
+require_once "../common.php";
 $data = json_decode(file_get_contents("php://input"),true);
 
 // var_dump($highscore,$HSname);
-$gameName =  "Red Light Green Light";
-//Data passed by axios 
-if(isset($highscore) && isset($name)){
-    $highscore = $data['Highscore'];
-$HSname = $data['playerName'];
-    echo $highscore, $name;
+//Data passed by axios
+$name = $data["name"];
+if ($name){
+    $rlgl = $data["rlgl"];
+    $tow = $data["tow"];
+    $marble = $data["marble"];
+    $glass = $data["glass"];
+    $total = $data["total"];
+    $connMgr = new ConnectionManager();
+    $conn = $connMgr->getConnection();
+    
+    
+    $sql = "INSERT INTO sotongLeaderboard (name, rlgl, tow, marble, glass, total) VALUES (:name, :rlgl, :tow, :marble, :glass, :total)";
+    $stmt = $conn->prepare($sql);
+    
+    $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+    $stmt->bindParam(":rlgl", $rlgl, PDO::PARAM_INT);
+    $stmt->bindParam(":tow", $tow, PDO::PARAM_STR);
+    $stmt->bindParam(":marble", $marble, PDO::PARAM_INT);
+    $stmt->bindParam(":glass", $glass, PDO::PARAM_INT);
+    $stmt->bindParam(":total", $total, PDO::PARAM_STR);
+    
+    $stmt->execute();
+    
+    $stmt = null;
+    $conn = null;
 }
 else{
-    //error
-    $error = "Name and Score not recorded!";
-    echo $error;
+    echo "Name and Score not recorded!";
 }
 
 // Now to establish a database connection and write this to my DB
-$connMgr = new ConnectionManager();
-$conn = $connMgr->getConnection();
-
-
-$sql = "INSERT INTO sotong_leaderboard (name, score, game) VALUES (:HSname, :highscore, :gameName)";
-        $stmt = $conn->prepare($sql);
- 
-        $stmt->bindParam(":HSname", $HSname, PDO::PARAM_STR);
-        $stmt->bindParam(":highscore", $highscore, PDO::PARAM_INT);
-        $stmt->bindParam(":gameName",$gameName, PDO::PARAM_STR);
-
-$result = $stmt->execute();
-
-$stmt = null;
-$conn = null;
-
-return $result;
 
 ?>

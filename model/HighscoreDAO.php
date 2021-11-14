@@ -9,32 +9,31 @@ class HighscoreDAO {
     $conn = $connMgr->getConnection();
 
     // STEP 2
-    $sql = "SELECT *FROM Sotong_Leaderboard "; // SELECT * FROM highscores; 
+    $sql = "SELECT * FROM sotongLeaderboard ORDER BY total"; // SELECT * FROM highscores; 
     $stmt = $conn->prepare($sql);
 
-      // STEP 3
-      $stmt->execute();
-      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    // STEP 3
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
- // STEP 4
- $scores = []; // Indexed Array of Post objects
- while( $row = $stmt->fetch() ) {
-     $scores[] =
-         new Highscore(
-             $row['ID'],
-             $row['Name'],
-             $row['RLGL'],
-             $row['TOW'],
-             $row['Marble'],
-             $row['Glass']
-);
- }
+    // STEP 4
+    $scores = []; // Indexed Array of Post objects
+    while( $row = $stmt->fetch() ) {
+        $scores[] = new Highscore(
+            $row['name'],
+            $row['rlgl'],
+            $row['tow'],
+            $row['marble'],
+            $row['glass'],
+            $row['total']
+        );
+    }
 
- // STEP 5
- $stmt = null;
- $conn = null;
+    // STEP 5
+    $stmt = null;
+    $conn = null;
 
- // STEP 6
- return $scores;
-}
+    // STEP 6
+    return $scores;
+    }
 }

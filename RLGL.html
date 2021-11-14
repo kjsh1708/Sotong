@@ -218,7 +218,7 @@
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
       setTimeout(function () {
-        document.location.href = "homepage.html";
+        document.location.href = "index.html";
       }, 3000);
     }
     // can move
@@ -319,6 +319,7 @@
 
         // submitDetails(HS, HSname);
 
+        sessionStorage.setItem("name", HSname);
         sessionStorage.setItem("rlgl", HS); // store highscore in session
 
         // Show them winning overlay and then redirect them to next game

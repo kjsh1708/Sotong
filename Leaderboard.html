@@ -59,20 +59,20 @@ background-image: url(img/dark.jpeg);
         <div class="table-responsive-sm">
         <table class="table m-2 text-white table-bordered text-center" v-if="scores.length > 0">
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Red Light Green Light</th>
                 <th>Tug of War</th>
                 <th>Marble</th>
                 <th>Glass</th>
+                <th>Total Score</th>
             </tr>
             <tr v-for="score in scores" class="text-center">
-                <td>{{ score.ID }}</td>
-                <td>{{ score.Name }}</td>
-                <td>{{ score.RLGL }}</td>
-                <td>{{ score.TOW }}</td>
-                <td>{{ score.Marble}}</td>
-                <td>{{ score.Glass }}</td>
+                <td>{{ score.name }}</td>
+                <td>{{ score.rlgl }}</td>
+                <td>{{ score.tow }}</td>
+                <td>{{ score.marble}}</td>
+                <td>{{ score.glass }}</td>
+                <td>{{ score.total }}</td>
             </tr>
         </table>
     </div>
@@ -87,11 +87,10 @@ background-image: url(img/dark.jpeg);
                 }
             },
             created() { // created is a hook that executes as soon as Vue instance is created
-                axios.get('./getScores.php')
+                axios.get('getScores.php')
                 .then(response => {
                     // this gets the data, which is an array, and pass the data to Vue instance's posts property
                     this.scores = response.data;
-                    console.log(this.scores)
                 })
                 .catch(error => {
                     this.scores = [{ entry: 'There was an error: ' + error.message }]

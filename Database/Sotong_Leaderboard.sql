@@ -1,11 +1,12 @@
-drop database if exists Sotong_Leaderboard;
-create database Sotong_Leaderboard;
-use Sotong_Leaderboard;
-CREATE TABLE Sotong_Leaderboard (
-	ID integer AUTO_INCREMENT PRIMARY KEY,
-	Name VARCHAR(50) DEFAULT NULL,
-	RLGL FLOAT not null,
-	TOW FLOAT not null,
-	Marble INT not null,
-	Glass FLOAT not null
+drop database if exists sotongLeaderboard;
+create database sotongLeaderboard;
+use sotongLeaderboard;
+CREATE TABLE sotongLeaderboard (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) DEFAULT NULL,
+	rlgl INT not null,
+	tow FLOAT not null,
+	marble INT not null,
+	glass INT not null,
+	total FLOAT not null
 );

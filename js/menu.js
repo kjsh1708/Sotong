@@ -25,7 +25,7 @@ app.component("squid-menu", {
     template: `
     <nav class="navbar navbar-light bg-light fixed-top navbar-expand-lg"> 
     <div class="container-fluid"> 
-      <a class="navbar-brand" href="homepage.html"><img src="https://fontmeme.com/permalink/211101/3c011b72ef8151e9209720f80dd3af6f.png" alt="squid-game-font" border="0"></a>
+      <a class="navbar-brand" href="index.html"><img src="https://fontmeme.com/permalink/211101/3c011b72ef8151e9209720f80dd3af6f.png" alt="squid-game-font" border="0"></a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"> 
         <span class="navbar-toggler-icon"></span> 

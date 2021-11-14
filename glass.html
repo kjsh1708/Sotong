@@ -8,22 +8,17 @@
   <title>Glass Bridge</title>
 
   <!--Bootstrap-->
-  <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-  crossorigin="anonymous"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
 
- <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
 
-    <!-- axios -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -31,21 +26,22 @@
   <link rel="stylesheet" href="css/master.css">
 
   <style>
-      body {
-  background-image: url(img/glass/gb.jpeg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color:#464646;
-}
-    button{
-      font-family: "SquidGame";
-      height:10vh;
-      width:10vw;
+    body {
+      background-image: url(img/glass/gb.jpeg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
     }
 
-    p{
+    button {
+      font-family: "SquidGame";
+      height: 10vh;
+      width: 10vw;
+    }
+
+    p {
       font-family: "SquidGame";
     }
   </style>
@@ -70,11 +66,14 @@
   </div>
 
   <div class=" container mt-3 text-center">
-    <img class="img-fluid" src="https://fontmeme.com/permalink/211113/1e76a2ad84b0393bbfeaf470e5e076a1.png" alt="squid-game-font" border="0">
+    <img class="img-fluid" src="https://fontmeme.com/permalink/211113/1e76a2ad84b0393bbfeaf470e5e076a1.png"
+      alt="squid-game-font" border="0">
   </div>
 
   <div id="main" class="container-fluid">
-    <div class="text-center"><h1><span id="time">01:00</span></h1></div>
+    <div class="text-center">
+      <h1><span id="time">01:00</span></h1>
+    </div>
 
     <div class="text-center container">
       <button class="text-center" onclick=Winner() disabled="disabled" id="win">End Here</button>
@@ -205,8 +204,9 @@
 
     // countdown timer for game 
     function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
+      var timer = duration,
+        minutes, seconds;
+      setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -216,14 +216,31 @@
         display.textContent = minutes + ":" + seconds;
 
         if (timer-- < 0) {
-            cannot_move()
+          cannot_move()
         }
-    }, 1000);
-}
+      }, 1000);
+    }
 
     function Winner() {
       document.getElementById("overlay_win").style.display = "block";
-      stop_time();
+      var glassScore = stop_time();
+
+      var name = sessionStorage.getItem("name")
+      var rlglScore = sessionStorage.getItem("rlgl")
+      var towScore = sessionStorage.getItem("tow")
+      var marbleScore = sessionStorage.getItem("marble")
+
+      axios.post("model/add.php", {
+        name: name,
+        rlgl: rlglScore,
+        tow: towScore,
+        marble: marbleScore,
+        glass: glassScore,
+        total: rlglScore * towScore * marbleScore * glassScore
+      })
+      .then(response => console.log(response.data))
+      .catch(e => console.log(e))
+
       setTimeout(function () {
         document.location.href = "Leaderboard.html";
       }, 6000);
@@ -239,7 +256,7 @@
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
       setTimeout(function () {
-        document.location.href = "homepage.html";
+        document.location.href = "index.html";
       }, 3000);
     }
 
@@ -250,9 +267,9 @@
     function off() {
       document.getElementById("overlay").style.display = "none";
       game_start();
-      var oneMin =60,
-      display = document.querySelector('#time');
-      startTimer(oneMin , display);
+      var oneMin = 60,
+        display = document.querySelector('#time');
+      startTimer(oneMin, display);
     }
 
     //// Timer to be implemented
@@ -283,10 +300,7 @@
     function stop_time() {
       window.clearInterval(interval);
       //get these values -- lowerr the highscore better == faster
-      var highscore = minutes * 60 + seconds;
-
-      console.log(highscore)
-      return highscore;
+      return (minutes * 60 + seconds)
     }
 
     //Function to reset the stopwatch
@@ -306,23 +320,14 @@
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
       setTimeout(function () {
-        document.location.href = "./homepage.html";
+        document.location.href = "index.html";
       }, 3000);
     }
-    
+
     function game_start() {
 
       start_time();
     }
-
-    var rlglScore = sessionStorage.getItem("rlgl")
-    var towScore = sessionStorage.getItem("tow")
-    var marbleScore = sessionStorage.getItem("marble")
-    console.log(rlglScore)
-    console.log(towScore)
-    console.log(marbleScore)
-
-
   </script>
 
 
