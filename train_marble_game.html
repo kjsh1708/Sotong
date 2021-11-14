@@ -262,7 +262,13 @@
                     else{
                         var odd_even = ['Even', 'Odd']
                         var index = Math.random()
-                        if(this.betAmt <= this.cMarbles && this.betAmt > 0){
+                        if(this.betAmt.includes('-')){
+                            alert('Please only input positive numbers!')
+                        }
+                        else if(this.betAmt.includes('.')){
+                            alert('Please use integers only!')
+                        }
+                        else if(this.betAmt <= this.cMarbles && this.betAmt > 0){
                             if (index > 0.5){ // bot has chosen odd
                                 opp_odd_even = odd_even[1]
                                 console.log(opp_odd_even)
@@ -294,6 +300,7 @@
                             if(this.cMarbles > 0 && this.cMarbles < 20){
                                 alert('Now its time to guess')
                                 this.u_guess = true
+                                this.betAmt = ''
                             }    
                         }
                     }

@@ -266,7 +266,16 @@
                     else{
                         var odd_even = ['Even', 'Odd']
                         var index = Math.random()
-                        if(this.betAmt <= this.cMarbles && this.betAmt > 0){
+
+                        if(this.betAmt.includes('-')){
+                            alert('Please only input positive numbers!')
+                        }
+                        else if(this.betAmt.includes('.')){
+                            alert('Please use integers only!')
+                        }
+                        else if(this.betAmt <= this.cMarbles && this.betAmt > 0){
+                            console.log('int checker')
+                            console.log(Number.isInteger(this.betAmt))
                             if (index > 0.5){ // bot has chosen odd
                                 opp_odd_even = odd_even[1]
                                 console.log(opp_odd_even)
