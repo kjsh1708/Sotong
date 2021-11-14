@@ -331,7 +331,7 @@
                         this.cMarbles = 0
                         alert("Player, you have been eliminated...")
                         this.game_state = 'lose'
-                        lose()
+
                     }
 
                     if (this.cMarbles > 20 || this.cMarbles == 20){
@@ -341,7 +341,7 @@
                         alert("You have won..... but at what cost")
                         alert("You have taken " + this.no_turns + " turn(s) to complete this round")
                         this.game_state = 'win'
-                        win()
+
                     }
                 }
             },
