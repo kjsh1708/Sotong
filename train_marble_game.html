@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marble Game</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <!-- <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
 
@@ -45,6 +46,9 @@
     
 </head>
 <body>
+    <div id='app'>
+        <squid-menu></squid-menu>
+      </div>
 
 
     <!-- Instructions on how to play -->
@@ -66,8 +70,8 @@
           <h1>Click anywhere to continue and have fun !</h1>
         </div>
       </div>
-        <div id="marble" align = 'center'>
-            <squid-menu></squid-menu>
+        <div id="marble" align = 'center' style = 'padding-top:70px;'>
+
                 <!-- Overlay for lose -->
             <div v-if="game_state=='lose'" class="container-fluid" style='display: block ;' id = 'overlay'>
                 <div class="h-100 row align-items-center text-center">
@@ -96,7 +100,9 @@
 
             <!-- While the game is being played -->
             <div v-else>
-                <h1 style = 'font-family:SquidGame; font-size: 10vh; color: white;'>Marble Game</h1>
+                <div class=" container mt-3 text-center">
+                    <img class="img-fluid" src="img/marble/marble_game_title.png" alt="squid-game-font" border="0" style = 'width:100% ; height:auto;'>
+                </div>
                 <h3>You currently have {{ cMarbles }} marbles left</h3>
                 <!-- show the two lines below only if u_guess is false -->
                 <div v-if="u_guess==true">
@@ -173,7 +179,7 @@
     //}
     
 
-        const vm = Vue.createApp({
+        const vm1 = Vue.createApp({
             data() {
                 return {
                     betAmt: '',
@@ -347,7 +353,17 @@
         }).mount('#marble');
     </script>
 
+    <script>
+        const app = Vue.createApp({
+            
+        });
+      </script>
+
     <script src="js/menu.js"></script>
+
+    <script>
+    const vm = app.mount('#app');
+    </script>
 
 </body>
 </html>
