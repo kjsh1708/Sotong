@@ -160,6 +160,7 @@
   </div>
 
   <script>
+    if (sessionStorage.getItem("glass")){document.location.href = "index.html"}
     //Remove disable button so user can proceed to another row of glasses
     function EnableRow2Button() {
       document.getElementById('second1').removeAttribute('disabled');
