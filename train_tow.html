@@ -190,21 +190,23 @@
                 <img src="img/tow/TOW_lose.jpg" height="50%" width="70%" />
                 <br />
                 <h1 class="danger">You died</h1>
+                <button type="button" class="button mt-3 mb-3 btn-primary" onClick="window.location.reload();">Try Again</button>
             </div>
         </div>
     </div>
 
     <!--Overlay for winning -->
-    <div class="container-fluid" id="overlay_win">
+    <div class="container-fluid" id="overlay_win_training">
         <div class="h-100 row align-items-center text-center">
-            <div class="col">
-                <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
-                <br />
-                <h1>You Won !</h1>
-                <h4>Your next Game will begin shortly</h4>
-            </div>
+          <div class="col">
+            <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
+            <br />
+            <h1>You Won !</h1>
+            <h4>Play The Next Game</h4>
+            <a type="button" class="button mt-3 mb-3 btn-primary p-3" href="train_marble_game.html">Next Game</a>
+          </div>
         </div>
-    </div>
+      </div>
 
     <div id="left-blade" class="blade"></div>
 
