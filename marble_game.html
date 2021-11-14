@@ -90,7 +90,12 @@
 
             <!-- While the game is being played -->
             <div v-else>
-                <h1 style = 'font-family:SquidGame; font-size: 10vh; color: white;'>Marble Game</h1>
+                <!-- <h1 style = 'font-family:SquidGame; font-size: 10vh; color: white;'>Marble Game</h1> -->
+                <div class=" container mt-3 text-center">
+                    <!-- <img class="img-fluid" src="https://fontmeme.com/permalink/211113/1e76a2ad84b0393bbfeaf470e5e076a1.png" alt="squid-game-font" border="0"> -->
+                    <img class="img-fluid" src="img/marble/marble_game_title.png" alt="squid-game-font" border="0" style = 'width:100% ; height:auto;'>
+                </div>
+                
                 <p>You currently have {{ cMarbles }} marbles left</p>
                 <!-- show the two lines below only if u_guess is false -->
                 <div v-if="u_guess==true">
