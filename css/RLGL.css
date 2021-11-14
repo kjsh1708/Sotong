@@ -27,7 +27,7 @@ h1 {
 #end video {
   padding-top: 0.2vh;
   position: absolute;
-  width: 10%;
+  width: 20%;
   height: 14.5vh;
   margin-left: 66%;
 }
@@ -101,6 +101,7 @@ h1 {
   overflow-y: hidden;
   display: none;
   color: whitesmoke;
+  pointer-events: none;
 }
 
 #overlay_win {
@@ -116,6 +117,7 @@ h1 {
   overflow-y: hidden;
   display: none;
   color: whitesmoke;
+  pointer-events: none;
 }
 
 #time {
