@@ -20,6 +20,9 @@
         p{
             color: white ;
         }
+        h3{
+            color: white ;
+        }
         video{
             width:100% ;
             
@@ -55,7 +58,7 @@
             During the guessing phase, you are supposed to guess whether the bot wagered an odd or even number of marbles.
           </h3><br/>
           <h3>If you guessed correctly, you get your opponents wagered marbles, else you lose the same number</h3><br>
-          <h3>For the wager phase the roles are then reversed</h3>
+          <h3>For the wager phase the roles are then reversed, please only wager a positive integer number of marbles</h3>
           <br/>
           <h3>You win when you reach 20 marbles, and lose when you reach 0</h3>
           
@@ -95,11 +98,11 @@
                     <img class="img-fluid" src="img/marble/marble_game_title.png" alt="squid-game-font" border="0" style = 'width:100% ; height:auto;'>
                 </div>
                 
-                <p>You currently have {{ cMarbles }} marbles left</p>
+                <h3>You currently have {{ cMarbles }} marbles left</h3>
                 <!-- show the two lines below only if u_guess is false -->
                 <div v-if="u_guess==true">
                     <h1>It's time to guess!</h1>
-                    <p>Do you think your opponent picked an odd or even number of marbles?</p><br>
+                    <h3>Do you think your opponent picked an odd or even number of marbles?</h3><br>
                     <select v-model="selected">
                         <option>Even</option>
                         <option>Odd</option>
@@ -107,12 +110,12 @@
                 </div>
                 <div v-else>
                     <h1> It's time to wager</h1>
-                    <p>How many do you want to bet? :</p> 
+                    <h3>How many marbles do you want to bet? :</h3> 
                     <input type = 'text' v-model='betAmt'>
                     <br>
                     <br>
-                    <p v-if="betAmt==0 || betAmt==''">Please enter a number to wager</p>
-                    <p v-if="betAmt > cMarbles">Please enter an amount you have!</p>
+                    <h3 v-if="betAmt==0 || betAmt==''">Please enter a number to wager</h3>
+                    <h3 v-if="betAmt > cMarbles">Please enter an amount you have!</h3>
                 </div>
                 <br>
                 <p style='color: black ;'><button v-on:click='play()'>Lock in my choice!</button></p>
