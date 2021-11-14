@@ -61,7 +61,7 @@
     </div>
   </div>
   <!-- Overlay for lose -->
-  <div class="container-fluid" id="overlay_lose">
+  <div class="container-fluid" id="overlay_lose_training">
     <div class="h-100 row align-items-center text-center">
       <div class="col">
         <img src="img/rlgl/Caught.jpg" height="50%" width="70%" />
@@ -74,7 +74,7 @@
   </div>
 
   <!--Overlay for winning -->
-  <div class="container-fluid" id="overlay_win">
+  <div class="container-fluid" id="overlay_win_training">
     <div class="h-100 row align-items-center text-center">
       <div class="col">
         <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
@@ -86,16 +86,6 @@
     </div>
   </div>
 
-
-
-  <!-- Overlay for the doll on redlight -->
-  <!-- <div class="container-fluid" id="overlay_doll">
-      <div class="h-100 row align-items-center text-center">
-        <div class="col">
-     <img src="img/rlgl/DollEyes.gif"  height="40%" width="60%">
-      </div>
-      </div>
-    </div> -->
 
   <!-- change the event to on mouse down -->
   <body>
@@ -213,7 +203,7 @@
     //lose condition
     function cannot_move() {
       // make the lose overlay visible
-      document.getElementById("overlay_lose").style.display = "block";
+      document.getElementById("overlay_lose_training").style.display = "block";
 
       //clear stopwatch
       reset_time();
@@ -328,7 +318,7 @@
         sessionStorage.setItem("rlgl", HS)  // store highscore in session
 
         // Show them winning overlay and then redirect them to next game
-        document.getElementById("overlay_win").style.display = "block";
+        document.getElementById("overlay_win_training").style.display = "block";
         // setTimeout(function () {
         //   document.location.href = "tow.html";
         // }, 6000);

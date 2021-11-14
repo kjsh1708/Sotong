@@ -131,3 +131,35 @@ h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-size: 100% 100%;
 }
+
+#overlay_lose_training {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: none;
+  color: whitesmoke;
+
+}
+
+#overlay_win_training {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgb(0, 0, 0);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: none;
+  color: whitesmoke;
+
+}
