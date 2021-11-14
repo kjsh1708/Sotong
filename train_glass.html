@@ -145,6 +145,7 @@
         <img src="img/train/glass_bridge.gif" height="50%" width="70%" />
         <br />
         <h1 class="danger">You died</h1>
+        <a type="button" class="button mt-3 mb-3 btn-primary p-3" onClick="window.location.reload();">Try Again</a>
       </div>
     </div>
   </div>
@@ -156,6 +157,7 @@
         <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
         <br />
         <h1>You Won !</h1>
+        <a type="button" class="button mt-3 mb-3 btn-primary p-3" href="Train.html">Back To Training Page</a>
       </div>
     </div>
   </div>
@@ -224,9 +226,9 @@
     function Winner() {
       document.getElementById("overlay_win").style.display = "block";
       stop_time();
-      setTimeout(function () {
-        document.location.href = "Leaderboard.html";
-      }, 6000);
+      // setTimeout(function () {
+      //   document.location.href = "Leaderboard.html";
+      // }, 6000);
     }
 
 
@@ -238,9 +240,9 @@
       reset_time();
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
-      setTimeout(function () {
-        document.location.href = "homepage.html";
-      }, 3000);
+      // setTimeout(function () {
+      //   document.location.href = "homepage.html";
+      // }, 3000);
     }
 
     function on() {
@@ -305,9 +307,9 @@
       reset_time();
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
-      setTimeout(function () {
-        document.location.href = "./homepage.html";
-      }, 3000);
+      // setTimeout(function () {
+      //   document.location.href = "./homepage.html";
+      // }, 3000);
     }
     
     function game_start() {
