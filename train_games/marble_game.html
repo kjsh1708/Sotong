@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
+
+    <link href="css/master.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        h1{
+            color: white;
+            font-family: 'SquidGame'
+        }
+        p{
+            color: white ;
+        }
+        video{
+            width:100% ;
+            
+        }
+        body{
+            background-image: url(img/marble/marble_game_bg.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color:#464646;
+        }
+        video{
+            width: 60% ;
+        }
+        button{
+            font-family: 'SquidGame' ;
+        }
+    </style>
+    
+</head>
+<body>
+
+
+    <!-- Instructions on how to play -->
+    <div class="container-fluid" id="overlay" onload="on()" onclick="off()">
+        <div class="text-center">
+          <h1>How to play the game</h1>
+          <h3>
+            There are two phases in this game, the guessing phase and the wager phase
+          </h3><br/>
+          <h3>
+            During the guessing phase, you are supposed to guess whether the bot wagered an odd or even number of marbles.
+          </h3><br/>
+          <h3>If you guessed correctly, you get your opponents wagered marbles, else you lose the same number</h3><br>
+          <h3>For the wager phase the roles are then reversed</h3>
+          <br/>
+          <h3>You win when you reach 20 marbles, and lose when you reach 0</h3>
+          
+          <br />
+          <h1>Click anywhere to continue and have fun !</h1>
+        </div>
+      </div>
+        <div id="marble" align = 'center'>
+                <!-- Overlay for lose -->
+            <div v-if="game_state=='lose'" class="container-fluid" style='display: block ;' id = 'overlay'>
+                <div class="h-100 row align-items-center text-center">
+
+                    <div class="col" style='padding-top: 20vh;'>
+                        <img src='img/marble/lose_e.gif'>
+                        <br/>
+                        <h1 class="danger">You died</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!--Overlay for winning -->
+            <div v-else-if="game_state=='win'" class="container-fluid" style='display: block ;' id = 'overlay'>
+                <div class="h-100 row align-items-center text-center">
+                    <div class="col" style='padding-top: 20vh;'>
+                        <img src="img/rlgl/moneybank.gif"/>
+                        <br />
+                        <h1>You Won !</h1>
+                        <h4 style='color:white;'>Your next Game will begin shortly</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- While the game is being played -->
+            <div v-else>
+                <h1 style = 'font-family:SquidGame; font-size: 10vh; color: white;'>Marble Game</h1>
+                <p>You currently have {{ cMarbles }} marbles left</p>
+                <!-- show the two lines below only if u_guess is false -->
+                <div v-if="u_guess==true">
+                    <h1>It's time to guess!</h1>
+                    <p>Do you think your opponent picked an odd or even number of marbles?</p><br>
+                    <select v-model="selected">
+                        <option>Even</option>
+                        <option>Odd</option>
+                    </select><br><br>
+                </div>
+                <div v-else>
+                    <h1> It's time to wager</h1>
+                    <p>How many do you want to bet? :</p> 
+                    <input type = 'text' v-model='betAmt'>
+                    <br>
+                    <br>
+                    <p v-if="betAmt==0 || betAmt==''">Please enter a number to wager</p>
+                    <p v-if="betAmt > cMarbles">Please enter an amount you have!</p>
+                </div>
+                <br>
+                <p style='color: black ;'><button v-on:click='play()'>Lock in my choice!</button></p>
+
+                <!-- This is to play the video if the user is going to lose -->
+                <div v-if='cMarbles < 3'>
+                    <div>
+                        <video autoplay src="vid/marble/g_lose1.mp4"></video>
+                    </div>
+                </div>
+                <!-- This is to play the video if the user is going to win -->
+                <div v-else-if='cMarbles > 17'>
+                    <div>
+                        <video autoplay src="vid/marble/g_win1.mp4"></video>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Four buttons below are for testing purposes -->
+            
+            <!-- <p style='color:green'>
+            <button @click='change_gs()'>
+                Change gamestate
+            </button><br><br>
+            <button @click='display'>
+                show gamestate
+            </button><br><br>
+            <button @click='lose_s'>
+                Set Marbles to 2
+            </button><br><br>
+            <button @click='win_s'>
+                Set Marbles to 18
+            </button><br><br>
+            </p> -->
+            
+        </div>
+
+
+    <script>
+        //// Overlay controls
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+    }
+    function off() {
+        document.getElementById("overlay").style.display = "none";
+    }
+    function win() {
+        setTimeout(function () {
+          document.location.href = "glass.html";
+        }, 5000);
+    }
+    function lose() {
+        setTimeout(function () {
+            document.location.href = "homepage.html";
+        }, 5000);
+    }
+    
+
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    betAmt: '',
+                    selected: 'Even',
+                    cMarbles: 10,
+                    u_guess: true,
+                    no_turns: 0,
+                    game_state: 'ongoing'
+                }
+            },
+
+            methods: {
+                lose_s(){
+                    this.cMarbles = 2 
+                },
+
+                win_s(){
+                    this.cMarbles = 18
+                },
+
+                display(){
+                    console.log(this.game_state)
+                    console.log(-1)
+                    console.log(typeof(-1))
+                },
+
+                change_gs(){
+                    if(this.game_state == 'ongoing'){
+                        this.game_state = 'win'
+
+                    }
+                    else if(this.game_state == 'win'){
+                        this.game_state = 'lose'
+                    }
+                    else{
+                        this.game_state = 'ongoing'
+                    }
+                },
+
+                change(){
+                    if(this.u_guess == true){
+                        this.u_guess = false
+                        console.log('guess has changed from true to false')
+                        console.log(this.u_guess)
+                    }
+                    else{
+                        this.u_guess = true
+                        console.log('guess has changed from false to true')
+                        console.log(this.u_guess)
+                    }
+                },
+
+                play(){
+                    var opp_marbles = 20 - Number(this.cMarbles)
+                    //console.log(opp_marbles)
+                    if(this.u_guess == true){
+
+                        var guess_work = Math.random()
+                        console.log(guess_work)
+                        var opp_wager = Math.ceil(opp_marbles * guess_work)
+                        console.log('opp wager is' + opp_wager)
+                        if(this.selected == 'Even'){
+                            if(opp_wager % 2 == 0){ // u guess even and opp put even
+                                alert('Your opponent has bet an even number of marbles and you have chosen even, you have won!')
+                                this.cMarbles += Number(opp_wager)
+                            }
+
+                            else{
+                                alert('Your opponent has bet an odd number of marbles and you have chosen odd, you have lost!')
+                                this.cMarbles -= Number(opp_wager)
+                            }
+                        }
+
+                        if(this.selected == 'Odd'){
+                            if(opp_wager % 2 == 0){
+                                alert('Your opponent has bet an even number of marbles and you have chosen odd, you have lost')
+                                this.cMarbles -= Number(opp_wager)
+                            }
+
+                            else{
+                                alert('Your opponent has bet an odd number of marbles and you have chosen odd, you have won!')
+                                this.cMarbles += Number(opp_wager)
+                            }
+
+                        }
+                        if(this.cMarbles > 0 && this.cMarbles < 20){
+                            alert('Now it is time to wager')
+                            this.u_guess = false
+                        }
+                    }
+
+                    else{
+                        var odd_even = ['Even', 'Odd']
+                        var index = Math.random()
+                        if(this.betAmt <= this.cMarbles && this.betAmt > 0){
+                            if (index > 0.5){ // bot has chosen odd
+                                opp_odd_even = odd_even[1]
+                                console.log(opp_odd_even)
+                                if (this.betAmt % 2 == 0){ //bot odd + u even, u win
+                                    alert('Your opponent has chosen odd and you have bet an even number of marbles, you have won!')
+                                    this.cMarbles += Number(this.betAmt)
+                                }
+
+                                else{ //bot odd + u odd, u lose
+                                    alert('Your opponent has chosen odd and you have also bet an odd number of marbles, you have lost!')
+                                    this.cMarbles -= Number(this.betAmt)
+                                }
+                            }
+    
+                            else{ //bot has chosen even 
+                                opp_odd_even = odd_even[0]
+                                console.log(opp_odd_even)
+                            
+                                if (this.betAmt % 2 == 0){ //bot chose even and u put even, u lose
+                                    alert('The your opponent has chosen even and you have bet an even number of marbles, you have lost!')
+                                    this.cMarbles -= Number(this.betAmt)
+                                }
+                                else{ //bot chose even and u bet an odd amt, u win
+                                    alert('Your opponent has chosen even and you have bet an odd number of marbles, you have won!')
+                                    this.cMarbles += Number(this.betAmt)
+                                }
+                            }
+
+                            if(this.cMarbles > 0 && this.cMarbles < 20){
+                                alert('Now its time to guess')
+                                this.u_guess = true
+                            }    
+                        }
+                    }
+
+                    this.no_turns += 1
+
+                    if (this.cMarbles < 6 && this.cMarbles > 0 ){
+                        alert("You have very few marbles and you're about to lose, maybe its time to buck up")
+                    }
+
+                    if (this.cMarbles > 14 && this.cMarbles < 20 ){
+                        alert("You have alot of marbles and are about to win! Keep it up!")
+                    }
+
+                    if (this.cMarbles < 0 || this.cMarbles == 0){
+                        this.cMarbles = 0
+                        alert("Player, you have been eliminated...")
+                        this.game_state = 'lose'
+                        lose()
+                    }
+
+                    if (this.cMarbles > 20 || this.cMarbles == 20){
+                        this.cMarbles = 20
+                        sessionStorage.setItem("marble", 10) // store highscore in session
+                        
+                        alert("You have won..... but at what cost")
+                        alert("You have taken " + this.no_turns + " turn(s) to complete this round")
+                        this.game_state = 'win'
+                        win()
+                    }
+                }
+            },
+
+            computed: {
+
+            }
+
+        }).mount('#marble');
+    </script>
+
+</body>
+</html>

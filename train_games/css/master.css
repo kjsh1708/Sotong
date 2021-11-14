@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'SquidGame';
+  src: url("sgfont.ttf");
+}
+
+.nav-link {
+  font-family: 'SquidGame';
+}
+
+#overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  text-align: left;
+  color: whitesmoke;
+}
+
+#overlay_lose {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  display: none;
+  color: whitesmoke;
+}
+
+#overlay_win {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgb(0, 0, 0);
+  overflow-x: hidden;
+  display: none;
+  color: whitesmoke;
+}

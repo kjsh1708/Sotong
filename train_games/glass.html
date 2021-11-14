@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass Bridge</title>
+
+  <!--Bootstrap-->
+  <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+  crossorigin="anonymous"/>
+
+
+ <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/master.css">
+
+  <style>
+      body {
+  background-image: url(img/glass/gb.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color:#464646;
+}
+    button{
+      font-family: "SquidGame";
+      height:10vh;
+      width:10vw;
+    }
+
+    p{
+      font-family: "SquidGame";
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container-fluid" id="overlay" onload="on()" onclick="off()">
+    <div class="text-center pt-5">
+      <h1>How to play the game</h1>
+      <h2>Start game by clicking on the screen</h2>
+      <img src='img/glass/glass_tut.gif' width="600" height="400px" class="mb-2 img-fluid">
+      <h2>Scroll to the bottom of page!</h2>
+      <br>
+      <h3>1.Click on either box which are marked as "Jump Here" </h3><br>
+      <h3>2.If you clicked the correct box, you can proceed to the next row </h3><br>
+      <h3>3.If you clicked the wrong box, you will get eliminated </h3><br>
+      <h3>4.When reaching the end, Click "End Here" box to complete the game</h3><br>
+      <h1 style="font-family: SquidGame;">Click anywhere to continue and have fun !</h1>
+    </div>
+  </div>
+
+  <div class=" container mt-3 text-center bg-dark">
+    <img class="img-fluid" src="https://fontmeme.com/permalink/211113/1e76a2ad84b0393bbfeaf470e5e076a1.png" alt="squid-game-font" border="0">
+  </div>
+
+  <div id="main" class="container-fluid">
+    <div class="text-center"><h1><span id="time">01:00</span></h1></div>
+
+    <div class="text-center container">
+      <button class="text-center" onclick=Winner() disabled="disabled" id="win">End Here</button>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="fifth1" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="fifth2" disabled="disabled" onclick="EnableEndButton()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="fourth1" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="fourth2" disabled="disabled" onclick="EnableRow5Button()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="third1" disabled="disabled" onclick="EnableRow4Button()">Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="third2" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="second1" disabled="disabled" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="second2" disabled="disabled" onclick="EnableRow3Button()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5 text-center">
+      <div class="row justify-content-around">
+        <div class="col">
+          <button id="first1" onclick=Break()>Jump Here</button>
+        </div>
+        <div class="col">
+          <button id="first2" onclick="EnableRow2Button()">Jump Here</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center mt-2 text-dark mb-2 bg-info p-2">Start From Here</p>
+  </div>
+
+  <!-- Overlay for lose -->
+  <div class="container-fluid" id="overlay_lose">
+    <div class="h-100 row align-items-center text-center">
+      <div class="col">
+        <img src="img/train/glass_bridge.gif" height="50%" width="70%" />
+        <br />
+        <h1 class="danger">You died</h1>
+      </div>
+    </div>
+  </div>
+
+  <!--Overlay for winning -->
+  <div class="container-fluid" id="overlay_win">
+    <div class="h-100 row align-items-center text-center">
+      <div class="col">
+        <img src="img/rlgl/moneybank.gif" height="40%" width="60%" />
+        <br />
+        <h1>You Won !</h1>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //Remove disable button so user can proceed to another row of glasses
+    function EnableRow2Button() {
+      document.getElementById('second1').removeAttribute('disabled');
+      document.getElementById('second2').removeAttribute('disabled');
+
+      document.getElementById('first1').disabled = true;
+      document.getElementById('first2').disabled = true;
+    }
+
+    function EnableRow3Button() {
+      document.getElementById('third1').removeAttribute('disabled');
+      document.getElementById('third2').removeAttribute('disabled');
+
+      document.getElementById('second1').disabled = true;
+      document.getElementById('second2').disabled = true;
+    }
+
+    function EnableRow4Button() {
+      document.getElementById('fourth1').removeAttribute('disabled');
+      document.getElementById('fourth2').removeAttribute('disabled');
+
+      document.getElementById('third1').disabled = true;
+      document.getElementById('third2').disabled = true;
+    }
+
+    function EnableRow5Button() {
+      document.getElementById('fifth1').removeAttribute('disabled');
+      document.getElementById('fifth2').removeAttribute('disabled');
+
+      document.getElementById('fourth1').disabled = true;
+      document.getElementById('fourth2').disabled = true;
+    }
+
+    function EnableEndButton() {
+      document.getElementById('fifth1').disabled = true;
+      document.getElementById('fifth2').disabled = true;
+
+      document.getElementById('win').removeAttribute('disabled');
+
+    }
+
+
+    // countdown timer for game 
+    function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (timer-- < 0) {
+            cannot_move()
+        }
+    }, 1000);
+}
+
+    function Winner() {
+      document.getElementById("overlay_win").style.display = "block";
+      stop_time();
+      setTimeout(function () {
+        document.location.href = "Leaderboard.html";
+      }, 6000);
+    }
+
+
+    //End game if 0 , Proceed to another row if 1
+    function Break() {
+      document.getElementById("overlay_lose").style.display = "block";
+
+      //clear stopwatch
+      reset_time();
+      // set a timer to let them see you lose and send them back to the  home page
+      //send user back to the homepage
+      setTimeout(function () {
+        document.location.href = "homepage.html";
+      }, 3000);
+    }
+
+    function on() {
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function off() {
+      document.getElementById("overlay").style.display = "none";
+      game_start();
+      var oneMin =60,
+      display = document.querySelector('#time');
+      startTimer(oneMin , display);
+    }
+
+    //// Timer to be implemented
+
+    //Define vars to hold time values
+    var minutes = 0;
+    var seconds = 0;
+
+    //Define var to hold setInterval() function
+    let interval = null;
+
+    //Stopwatch function (logic to determine when to increment next value, etc.)
+    function stopWatch() {
+      seconds++;
+
+      //Logic to determine when to increment next value
+      if (seconds / 60 === 1) {
+        seconds = 0;
+        minutes++;
+      }
+    }
+
+    function start_time() {
+      //Start the stopwatch (by calling the setInterval() function)
+      interval = window.setInterval(stopWatch, 1000);
+    }
+
+    function stop_time() {
+      window.clearInterval(interval);
+      //get these values -- lowerr the highscore better == faster
+      var highscore = minutes * 60 + seconds;
+
+      console.log(highscore)
+      return highscore;
+    }
+
+    //Function to reset the stopwatch
+    function reset_time() {
+      window.clearInterval(interval);
+      seconds = 0;
+      minutes = 0;
+    }
+    const playingfield = document.getElementById("pf");
+    //lose condition
+    function cannot_move() {
+      // make the lose overlay visible
+      document.getElementById("overlay_lose").style.display = "block";
+
+      //clear stopwatch
+      reset_time();
+      // set a timer to let them see you lose and send them back to the  home page
+      //send user back to the homepage
+      setTimeout(function () {
+        document.location.href = "./homepage.html";
+      }, 3000);
+    }
+    
+    function game_start() {
+
+      start_time();
+    }
+
+    var rlglScore = sessionStorage.getItem("rlgl")
+    var towScore = sessionStorage.getItem("tow")
+    var marbleScore = sessionStorage.getItem("marble")
+    console.log(rlglScore)
+    console.log(towScore)
+    console.log(marbleScore)
+
+
+  </script>
+
+
+
+</body>
+
+</html>
