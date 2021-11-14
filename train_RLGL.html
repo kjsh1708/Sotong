@@ -23,17 +23,6 @@
 
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <!-- Vue 3: development -->
-    <script src="https://unpkg.com/vue@next"></script>
-
-    <link rel="stylesheet" href="css/master.css">
-
-    <style>
-      body{
-        padding-top: 60px;
-      }
-    </style>
   </head>
   <!-- Overlay before the game starts -->
   <div class="container-fluid" id="overlay" onload="on()" onclick="off()">
@@ -67,8 +56,6 @@
         <img src="img/rlgl/Caught.jpg" height="50%" width="70%" />
         <br />
         <h1 class="danger">You died</h1>
-        <button type="button" class="button mt-3 mb-3 btn-primary" onClick="window.location.reload();">Try Again</button>
-        
       </div>
     </div>
   </div>
@@ -86,57 +73,42 @@
     </div>
   </div>
 
-
-
-  <!-- Overlay for the doll on redlight -->
-  <!-- <div class="container-fluid" id="overlay_doll">
-      <div class="h-100 row align-items-center text-center">
-        <div class="col">
-     <img src="img/rlgl/DollEyes.gif"  height="40%" width="60%">
-      </div>
-      </div>
-    </div> -->
-
   <!-- change the event to on mouse down -->
-  <body>
-    <div id='app'>
-      <squid-menu></squid-menu>
-    </div>
-
-    <div onmousedown="mouseDownMove()" style="position: relative">
+  <body onmousedown="mouseDownMove()" style="position: relative">
     <!-- Start, PF, End -->
     <div class="container-fluid">
       <!-- Header Nav -->
-      <div class="container text-center">
-        <img class="img-fluid" src="https://fontmeme.com/permalink/211113/f753e8fec7556c3469a6960109203ba1.png" alt="squid-game-font" border="0">
-      </div>
+      <div id="header" class="row text-center"></div>
 
       <!-- end point -->
-
       <div id="end" class="row">
         <!-- Place the gif of the doll turning around -->
-        <div><h1><span id="time">1:00</span></h1></div>
+        <div>
+          <h1><span id="time">1:00</span></h1>
+        </div>
         <video id="turnVid">
           <source src="img/rlgl/dollturn.mp4" type="video/mp4" />
         </video>
       </div>
       <!-- playing field -->
       <div id="pf" class="row bg-success bg-opacity-75"></div>
+
       <!-- start point -->
       <div id="start" class="row"><h1>Start</h1></div>
 
       <!-- Character Model -->
       <img id="image1" src="img/rlgl/067.png" alt="067 player" />
     </div>
-    </div>
   </body>
 
   <script>
-    // countdown timer for game 
+    // countdown timer for game
     function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
+      var timer = duration,
+        minutes,
+        seconds;
+      setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -145,10 +117,23 @@
         display.textContent = minutes + ":" + seconds;
 
         if (timer-- < 0) {
-            cannot_move()
+          cannot_move();
         }
-    }, 1000);
-}
+      }, 1000);
+    }
+
+    //change this to a prompt box and input will be name
+    var HSname = prompt("What is your name player?");
+    // Validation to ensure that user enters only alpha num
+    var regEx = /^[0-9a-zA-Z]+$/;
+
+    if (!HSname.match(regEx)) {
+
+      alert("Please enter letters and numbers only, no spaces.");
+      var HSname = "";
+      prompt("What is your name, Player?");
+    }
+
     //start and stop video
     var endzoneVid = document.getElementById("turnVid");
     function playvid() {
@@ -158,6 +143,22 @@
       endzoneVid.pause();
       endzoneVid.currentTime = 0;
     }
+
+    //Using axios to past to PHP
+    // function submitDetails(a, b) {
+    //   axios
+    //     .post("./add.php", {
+    //       Highscore: a,
+    //       playerName: b,
+    //     })
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
+    //// Overlay controls
     function on() {
       document.getElementById("overlay").style.display = "block";
     }
@@ -165,14 +166,12 @@
     function off() {
       document.getElementById("overlay").style.display = "none";
       game_start();
-        //1m30s (in seonds) timer start
-    var oneMin =60,
-        display = document.querySelector('#time');
-    startTimer(oneMin , display);
-
+      //1m30s (in seonds) timer start
+      var oneMin = 60,
+        display = document.querySelector("#time");
+      startTimer(oneMin, display);
     }
-    //// Timer to be implemented
-
+    //Score for stopwatch
     //Define vars to hold time values
     var minutes = 0;
     var seconds = 0;
@@ -219,9 +218,9 @@
       reset_time();
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
-      // setTimeout(function () {
-      //   document.location.href = "./homepage.html";
-      // }, 3000);
+      setTimeout(function () {
+        document.location.href = "homepage.html";
+      }, 3000);
     }
     // can move
     function can_move() {
@@ -244,9 +243,7 @@
       document.addEventListener("click", can_move());
       playingfield.classList.replace("bg-danger", "bg-success");
       //start music
-      var green_music = new Audio(
-        "audio/SQUID_GAME_GREEN_RED_LIGHT.mp3"
-      );
+      var green_music = new Audio("audio/SQUID_GAME_GREEN_RED_LIGHT.mp3");
       green_music.play();
       // stop music after 5s
       var green_music_correct = setTimeout(function () {
@@ -271,14 +268,13 @@
     function game_start() {
       //start the game on greenlight
       var start = document.addEventListener("click", greenlight);
-
-      // need to figure out how to change light every x seconds after the music ends (maybe use a set time out instead)?
+//change light every 5.5s
       window.setInterval(change_light, 5500);
 
       //start the stopwatch
       start_time();
     }
-    // game_start();
+ 
 
     //Moving char across screen
     //init object globally
@@ -321,32 +317,19 @@
         //stop stopwatch
         stop_time();
         var HS = stop_time();
-        // console.log(stop_time());
-        //remove the ability to move and not move
-        submitDetails(HS, HSname);
 
-        sessionStorage.setItem("rlgl", HS)  // store highscore in session
+        // submitDetails(HS, HSname);
+
+        sessionStorage.setItem("rlgl", HS); // store highscore in session
 
         // Show them winning overlay and then redirect them to next game
         document.getElementById("overlay_win").style.display = "block";
-        // setTimeout(function () {
-        //   document.location.href = "tow.html";
-        // }, 6000);
+        setTimeout(function () {
+          document.location.href = "tow.html";
+        }, 6000);
       }
     }
 
     window.onload = init;
   </script>
-
-<script>
-  const app = Vue.createApp({
-      
-  });
-</script>
-
-<script src="js/menu.js"></script>
-
-<script>
-  const vm = app.mount('#app');
-</script>
 </html>
