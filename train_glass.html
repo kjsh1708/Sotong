@@ -25,6 +25,10 @@
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+     <!-- Vue 3: development -->
+     <script src="https://unpkg.com/vue@next"></script>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="css/glass.css">
@@ -38,6 +42,7 @@
   background-attachment: fixed;
   background-size: cover;
   background-color:#464646;
+  padding-top:70px;
 }
     button{
       font-family: "SquidGame";
@@ -53,6 +58,9 @@
 </head>
 
 <body>
+  <div id='app'>
+    <squid-menu></squid-menu>
+  </div>
 
   <div class="container-fluid" id="overlay" onload="on()" onclick="off()">
     <div class="text-center pt-5">
@@ -327,6 +335,17 @@
 
   </script>
 
+<script>
+  const app = Vue.createApp({
+      
+  });
+</script>
+
+<script src="js/menu.js"></script>
+
+<script>
+  const vm = app.mount('#app');
+</script>
 
 
 </body>
