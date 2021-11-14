@@ -321,6 +321,8 @@
                         
                         alert("You have won..... but at what cost")
                         alert("You have taken " + this.no_turns + " turn(s) to complete this round")
+                        console.log('The player has won in '+ this.no_turns +' turns')
+                        console.log(this.no_turns)
                         this.game_state = 'win'
                         win()
                     }
