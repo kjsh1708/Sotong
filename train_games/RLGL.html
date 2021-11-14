@@ -217,9 +217,9 @@
       reset_time();
       // set a timer to let them see you lose and send them back to the  home page
       //send user back to the homepage
-      // setTimeout(function () {
-      //   document.location.href = "homepage.html";
-      // }, 3000);
+      setTimeout(function () {
+        document.location.href = "homepage.html";
+      }, 3000);
     }
     // can move
     function can_move() {
@@ -323,23 +323,12 @@
 
         // Show them winning overlay and then redirect them to next game
         document.getElementById("overlay_win").style.display = "block";
-        // setTimeout(function () {
-        //   document.location.href = "tow.html";
-        // }, 6000);
+        setTimeout(function () {
+          document.location.href = "tow.html";
+        }, 6000);
       }
     }
 
     window.onload = init;
-  </script>
-  <script>
-    const app = Vue.createApp({
-        
-    });
-  </script>
-  
-  <script src="../../js/menu.js"></script>
-  
-  <script>
-    const vm = app.mount('#app');
   </script>
 </html>
